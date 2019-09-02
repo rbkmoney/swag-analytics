@@ -1,0 +1,11 @@
+type: object
+discriminator: requestType
+required:
+  - requestType
+properties:
+  requestType:
+    description: Тип браузерной операции
+    type: string
+    enum:
+      - BrowserGetRequest
+      - BrowserPostRequest

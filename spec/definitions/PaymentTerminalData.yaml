@@ -1,0 +1,11 @@
+type: object
+allOf:
+  - $ref: '#/definitions/PaymentTool'
+  - type: object
+    description: Платежный терминал
+    required:
+      - provider
+    properties:
+      provider:
+        x-rebillyMerge:
+          - $ref: '#/definitions/PaymentTerminalProvider'

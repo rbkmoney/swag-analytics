@@ -1,0 +1,10 @@
+type: object
+allOf:
+  - $ref: '#/definitions/InvoiceChange'
+  - $ref: '#/definitions/PaymentStatus'
+  - type: object
+    required:
+      - paymentID
+    properties:
+      paymentID:
+        type: string

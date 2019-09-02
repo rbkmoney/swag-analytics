@@ -1,0 +1,10 @@
+type: object
+discriminator: method
+properties:
+  method:
+    description: Метод оплаты
+    type: string
+    enum:
+      - BankCard
+      - PaymentTerminal
+      - DigitalWallet
