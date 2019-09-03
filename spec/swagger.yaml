@@ -310,7 +310,7 @@ tags:
 
         ```json
         {
-            "message": "Invoice not found"
+            "message": "Invalid token"
         }
         ```
 
