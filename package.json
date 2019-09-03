@@ -1,5 +1,5 @@
 {
-  "name": "RBKmoney-yapi-spec",
+  "name": "RBKmoney-dashboard-api-spec",
   "version": "0.0.1",
   "dependencies": {
     "bower": "^1.7.7",

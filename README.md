@@ -1,4 +1,4 @@
-# RBKmoney YAPI Specification
+# RBKmoney Dashboard API Specification
 
 ## Working on specification
 ### Install
