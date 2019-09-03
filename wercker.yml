@@ -47,23 +47,3 @@ release-v:
     - slack-notifier:
       url: ${SLACK_WEBHOOK_URL}
       username: "wercker"
-
-deploy:
-  steps:
-    - lukevivier/gh-pages:
-      repo: rbkmoney/api
-      token: ${GITHUB_API_TOKEN}
-  after-steps:
-    - slack-notifier:
-      url: ${SLACK_WEBHOOK_URL}
-      username: "wercker"
-
-deploy-next:
-  steps:
-    - lukevivier/gh-pages:
-      repo: rbkmoney/api-v2
-      token: ${GITHUB_API_TOKEN}
-  after-steps:
-    - slack-notifier:
-      url: ${SLACK_WEBHOOK_URL}
-      username: "wercker"
