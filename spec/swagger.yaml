@@ -96,15 +96,9 @@ securityDefinitions:
 
       Обратите внимание, что API-ключ должен использоваться исключительно для межсерверного взаимодействия.
 
-      Для авторизации запросов, выполняемых из контекста браузера плательщика (например, токенизация платежных данных методом [createPaymentResource](https://developer.rbk.money/api/#operation/createPaymentResource)) используйте полученный при вызове [createInvoice](https://developer.rbk.money/api/#operation/createInvoice) `invoiceAccessToken`, либо создайте его напрямую, вызвав метод [createInvoiceAccessToken](https://developer.rbk.money/api/#operation/createInvoiceAccessToken).
-
-
-      При попытке вызова [createPaymentResource](https://developer.rbk.money/api/#operation/createPaymentResource) с ключом, отличным от invoiceAccessToken, платформа вернет ошибку авторизации со статусом HTTP/401.
-
-
       Ключи не разделяются на тестовые и боевые, ваш API ключ открывает доступ
-      ко всем функциям платформы. Для тестовых транзакций используйте ID
-      тестовых магазинов.
+      ко всем функциям платформы. Для тестовых поисковый и аналитических запросов используйте ID
+      тестовых операций.
 
 
       Помните, что вы никому не должны передавать ваш API ключ!
@@ -141,20 +135,6 @@ parameters:
     type: string
     maxLength: 32
     minLength: 1
-  claimID:
-    name: claimID
-    in: path
-    description: Идентификатор заявки
-    required: true
-    type: integer
-    format: int64
-  claimRevision:
-    name: claimRevision
-    in: query
-    description: Версия заявки
-    required: true
-    type: integer
-    format: int32
   shopIDQuery:
     name: shopID
     in: query
@@ -167,14 +147,6 @@ parameters:
     name: shopID
     in: path
     description: Идентификатор магазина
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
-  invoiceTemplateID:
-    name: invoiceTemplateID
-    in: path
-    description: Идентификатор шаблона инвойса
     required: true
     type: string
     maxLength: 40
@@ -220,57 +192,10 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  customerBindingID:
-    name: customerBindingID
-    in: path
-    description: Идентификатор привязки к кастомера
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
-  webhookID:
-    name: webhookID
-    in: path
-    description: Идентификатор webhook'а
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
-  adjustmentID:
-    name: adjustmentID
-    in: path
-    description: Идентификатор поправки к договору
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
-  payoutToolID:
-    name: payoutToolID
-    in: path
-    description: Идентификатор средства вывода
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
   payoutID:
     name: payoutID
     in: path
     description: Идентификатор вывода
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
-  reportID:
-    name: reportID
-    in: path
-    description: Идентификатор отчета
-    required: true
-    type: integer
-    format: int64
-  fileID:
-    name: fileID
-    in: path
-    description: Идентификатор файла
     required: true
     type: string
     maxLength: 40
@@ -283,13 +208,6 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  paymentInstitutionID:
-    name: paymentInstitutionID
-    in: path
-    description: Payment institution reference
-    required: true
-    type: integer
-    format: int32
   fromTime:
     name: fromTime
     in: query
@@ -378,28 +296,6 @@ tags:
 
         | Код                              | Описание                                                                                                                              |
         | ---                              | --------                                                                                                                              |
-        | **operationNotPermitted**        | Недоступная в рамках действующего договора операция.                                                                                  |
-        | **invalidPartyStatus**           | Ваш участник заблокирован или его операции приостановлены. В последнем случае вы можете их [возобновить](#operation/activateMyParty). |
-        | **invalidShopStatus**            | Ваш магазин заблокирован или его операции приостановлены. В последнем случае вы можете их [возобновить](#operation/activateShop).     |
-        | **invalidContractStatus**        | Ваш договор более не имеет силы, по причине истечения срока действия или расторжения.                                                 |
-        | **invalidShopID**                | Указан идентификатор несуществующего магазина.                                                                                        |
-        | **invalidInvoiceCost**           | Стоимость инвойса не указана или неверна, в частности, не равна стоимости позиций в корзине.                                          |
-        | **invalidInvoiceCart**           | Некорректная корзина в инвойсе, Например, пустая.                                                                                     |
-        | **invalidInvoiceStatus**         | Неверный [статус инвойса](#tag/Invoices). Например, при попытке [оплатить](#operation/createPayment) отменённый инвойс.               |
-        | **invoicePaymentPending**        | Последний запущенный платёж по указанному инвойсу ещё не достиг финального статуса.                                                   |
-        | **invalidPaymentStatus**         | Неверный [статус платежа](#tag/Payments). Например, при попытке [подтвердить](#operation/capturePayment) неуспешный платёж.           |
-        | **invalidPaymentResource**       | Не поддерживаемый системой или не подключенный в рамках действующего договора платежный инструмент.                                   |
-        | **invalidPaymentToolToken**      | Неверное содержимое токена платёжного инструмента.                                                                                    |
-        | **invalidPaymentSession**        | Невернoе содержимое платёжной сессии.                                                                                                 |
-        | **invalidRecurrentParent**       | Невернo указан родительский рекуррентный платеж.                                                                                      |
-        | **insufficentAccountBalance**    | Недостаточный объём денежных средств на счёте магазина, например, для проведения возврата.                                            |
-        | **invoicePaymentAmountExceeded** | Попытка возврата сверх суммы платежа.                                                                                                 |
-        | **inconsistentRefundCurrency**   | Попытка возврата средств в валюте, отличной от валюты платежа.                                                                        |
-        | **changesetConflict**            | Попытка внести изменения участника, конфликтующие с изменениями в других заявках, ожидающих рассмотрения.                             |
-        | **invalidChangeset**             | Неверные изменения участника, например, попытка создать магазин в валюте, недоступной в рамках договора.                              |
-        | **invalidClaimStatus**           | Неверный статус заявки. Например, при попытке [отзыва](#operation/revokeClaimByID) уже принятой заявки.                               |
-        | **invalidClaimRevision**         | Неверная ревизия заявки. Например, в случае если заявку одновременно с вами кто-то уже принял или отклонил.                           |
-        | **limitExceeded**                | Превышен разумный лимит выборки. В этом случае лучше запросить менее объёмный набор данных.                                           |
         | **invalidDeadline**              | Неверный формат времени.                                                                                                       |
         | **invalidRequest**               | Прочие неверные данные запроса.                                                                                                       |
 
@@ -442,14 +338,7 @@ tags:
 
       Ошибки, передаваемые в платежную форму (отображаются плательщикам):
 
-        | Код                    | Описание                                                                                                                                      |
-        | ---                    | --------                                                                                                                                      |
-        | InvalidPaymentTool     | Неверный платежный инструмент (введен номер несуществующей карты, отсутствующего аккаунта и т.п.)                                             |
-        | AccountLimitsExceeded  | Превышены лимиты (например, в личном кабинете плательщика установлено ограничение по сумме платежа, стране списания)                          |
-        | InsufficientFunds      | Недостаточно средств на счете                                                                                                                 |
-        | PreauthorizationFailed | Предварительная авторизация отклонена (введен неверный код 3D-Secure, на форме 3D-Secure нажата ссылка отмены)                                |
-        | RejectedByIssuer       | Платёж отклонён эмитентом (установлены запреты по стране списания, запрет на покупки в интернете, платеж отклонен антифродом эмитента и т.п.) |
-        | PaymentRejected        | платёж отклонён по иным причинам                                                                                                              |
+      Смотрите https://developer.rbk.money/api/#section/Oshibki-platezha
 
       Ошибки, передаваемые в ЛК мерчанта (отображаются только вам):
 
