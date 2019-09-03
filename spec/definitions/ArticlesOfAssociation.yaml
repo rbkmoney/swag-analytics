@@ -1,4 +1,0 @@
-description: Устав организации
-type: object
-allOf:
-  - $ref: '#/definitions/RepresentativeDocument'

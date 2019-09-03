@@ -1,9 +1,0 @@
-type: object
-allOf:
-  - $ref: '#/definitions/InvoiceChange'
-  - type: object
-    required:
-      - payment
-    properties:
-      payment:
-        $ref: '#/definitions/Payment'
