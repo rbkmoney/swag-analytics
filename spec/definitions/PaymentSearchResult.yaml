@@ -60,6 +60,4 @@ allOf:
         description: 'Информация о транзакции'
         $ref: '#/definitions/TransactionInfo'
       makeRecurrent:
-        x-merge-properties:
-          - $ref: '#/definitions/PaymentMakeRecurrent'
-          - readOnly: true
+        $ref: '#/definitions/PaymentMakeRecurrent'
