@@ -1,11 +1,11 @@
 swagger: '2.0'
 info:
   version: 1.0.0
-  title: RBKmoney Platform Dashboard API
+  title: RBKmoney Platform Analytics API
   description: >
     ## Описание
 
-    RBKmoney YAPI является базовой и единственной точкой взаимодействия с
+    RBKmoney Analytics является базовой и единственной точкой взаимодействия с
     платежной платформой. Все изменения состояний платформы осуществляются с
     помощью вызовов соответствующих методов API. Любые сторонние приложения,
     включая наши веб-сайты и другие UI-интерфейсы являются внешними
@@ -68,9 +68,9 @@ info:
   contact:
     name: RBKmoney support team
     email: support@rbk.money
-    url: 'https://dashboardapi.rbk.money'
-host: dashboardapi.rbk.money
-basePath: /v1
+    url: 'https://api.rbk.money'
+host: api.rbk.money
+basePath: /analytics/v1
 schemes:
   - https
 consumes:
