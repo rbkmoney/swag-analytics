@@ -41,7 +41,7 @@ allOf:
         format: int64
         minimum: 0
       currency:
-        x-rebillyMerge:
+        x-merge-properties:
           - $ref: '#/definitions/Currency'
       payer:
         $ref: '#/definitions/Payer'
@@ -60,6 +60,6 @@ allOf:
         description: 'Информация о транзакции'
         $ref: '#/definitions/TransactionInfo'
       makeRecurrent:
-        x-rebillyMerge:
+        x-merge-properties:
           - $ref: '#/definitions/PaymentMakeRecurrent'
           - readOnly: true

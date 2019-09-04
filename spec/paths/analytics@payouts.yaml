@@ -33,7 +33,7 @@ get:
       type: array
       items:
         type: string
-    - x-rebillyMerge:
+    - x-merge-properties:
       - name: continuationToken
         in: query
         required: false
@@ -47,7 +47,7 @@ get:
           totalCount:
             type: integer
           continuationToken:
-            x-rebillyMerge:
+            x-merge-properties:
               - $ref: '#/definitions/ContinuationToken'
           result:
             type: array

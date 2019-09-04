@@ -2,14 +2,14 @@ var jpointer = require('json-pointer');
 var mergePatch = require('json-merge-patch');
 
 module.exports = {
-  pathExpression: '$..["x-rebillyMerge"]',
+  pathExpression: '$..["x-merge-properties"]',
   init: function(swagger) {
-    console.log('* x-rebillyMerge plugin');
+    console.log('* x-merge-properties plugin');
   },
   process: function(parent, name, jsonpath, swagger) {
     var value = parent[name];
     if (!Array.isArray(value)) {
-      throw Error('x-rebillyMerge argument should be array at ' + jsonpath);
+      throw Error('x-merge-properties argument should be array at ' + jsonpath);
     }
     let required = [];
     let properties = {};

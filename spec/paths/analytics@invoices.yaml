@@ -96,12 +96,12 @@ get:
       type: string
       maxLength: 40
       minLength: 1
-    - x-rebillyMerge:
+    - x-merge-properties:
       - name: bankCardTokenProvider
         in: query
         required: false
       - $ref: '#/definitions/BankCardTokenProvider'
-    - x-rebillyMerge:
+    - x-merge-properties:
       - name: bankCardPaymentSystem
         in: query
         required: false
@@ -145,7 +145,7 @@ get:
       type: array
       items:
         type: string
-    - x-rebillyMerge:
+    - x-merge-properties:
       - name: continuationToken
         in: query
         required: false
@@ -157,7 +157,7 @@ get:
         type: object
         properties:
           continuationToken:
-            x-rebillyMerge:
+            x-merge-properties:
               - $ref: '#/definitions/ContinuationToken'
           result:
             type: array
