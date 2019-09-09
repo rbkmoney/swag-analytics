@@ -11,19 +11,16 @@ module.exports = {
     if (!Array.isArray(value)) {
       throw Error('x-merge-properties argument should be array at ' + jsonpath);
     }
-    let required = [];
-    let properties = {};
+    let res = null;
     value.forEach(function(obj) {
+      if (typeof obj !== 'object') throw Error('Can\'t merge non-object values at ' + jsonpath);
       if (obj.$ref && (typeof obj.$ref === 'string')) {
         obj = jpointer.get(swagger, obj.$ref.substring(1));
       }
-      if (typeof obj !== 'object') throw Error('Can\'t merge non-object values at ' + jsonpath);
-      required = required.concat(obj.required || []);
-      properties = mergePatch.apply(properties, obj.properties || {});
+      res = mergePatch.apply(res, obj);
     });
     delete parent[name];
-    parent.required = required;
-    parent.properties = properties;
+    Object.assign(parent, res);
   },
   finish: function(swagger) {
     // TODO: cleanup unused $refs
