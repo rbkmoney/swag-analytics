@@ -2,14 +2,14 @@ var jpointer = require('json-pointer');
 var mergePatch = require('json-merge-patch');
 
 module.exports = {
-  pathExpression: '$..["x-merge-properties"]',
+  pathExpression: '$..["x-merge-obj"]',
   init: function(swagger) {
-    console.log('* x-merge-properties plugin');
+    console.log('* x-merge-obj plugin');
   },
   process: function(parent, name, jsonpath, swagger) {
     var value = parent[name];
     if (!Array.isArray(value)) {
-      throw Error('x-merge-properties argument should be array at ' + jsonpath);
+      throw Error('x-merge-obj argument should be array at ' + jsonpath);
     }
     let res = null;
     value.forEach(function(obj) {
