@@ -22,7 +22,8 @@ properties:
     type: integer
     format: int64
   currency:
-    $ref: '#/definitions/Currency'
+    x-merge-properties:
+      - $ref: '#/definitions/Currency'
   count:
     description: 'Общее количество операций над денежными средствами по данному типу'
     type: integer

@@ -47,7 +47,8 @@ get:
           totalCount:
             type: integer
           continuationToken:
-            $ref: '#/definitions/ContinuationToken'
+            x-merge-properties:
+              - $ref: '#/definitions/ContinuationToken'
           result:
             type: array
             items:
