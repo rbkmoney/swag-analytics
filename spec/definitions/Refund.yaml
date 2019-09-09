@@ -23,8 +23,7 @@ allOf:
         format: int64
         minimum: 1
       currency:
-        x-merge-properties:
-          - $ref: '#/definitions/Currency'
+        $ref: '#/definitions/Currency'
       reason:
         description: Причина осуществления возврата
         type: string

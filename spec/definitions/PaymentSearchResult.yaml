@@ -41,8 +41,7 @@ allOf:
         format: int64
         minimum: 0
       currency:
-        x-merge-properties:
-          - $ref: '#/definitions/Currency'
+        $ref: '#/definitions/Currency'
       payer:
         $ref: '#/definitions/Payer'
       flow:

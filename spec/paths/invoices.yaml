@@ -157,8 +157,7 @@ get:
         type: object
         properties:
           continuationToken:
-            x-merge-properties:
-              - $ref: '#/definitions/ContinuationToken'
+            $ref: '#/definitions/ContinuationToken'
           result:
             type: array
             items:
