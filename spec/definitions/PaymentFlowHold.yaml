@@ -16,4 +16,3 @@ allOf:
         description: 'Дата и время, до которого происходит удержание денежных средств'
         type: string
         format: date-time
-        readOnly: true
