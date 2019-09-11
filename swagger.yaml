@@ -803,6 +803,72 @@ paths:
         '404':
           $ref: '#/responses/NotFound'
 definitions:
+  BankAccount:
+    description: |
+      Данные расчётного счёта в банковской организации, ведущей деятельность под
+      юрисдикцией РФ.
+    type: object
+    required:
+      - account
+      - bankName
+      - bankPostAccount
+      - bankBik
+    properties:
+      account:
+        description: Номер счёта
+        type: string
+        pattern: '^\d{20}$'
+      bankName:
+        description: Наименование юридического лица банковской организации
+        type: string
+        maxLength: 100
+      bankPostAccount:
+        type: string
+        pattern: '^\d{20}$'
+      bankBik:
+        description: БИК банковской организации
+        type: string
+        pattern: '^\d{9}$'
+  BankCardDetails:
+    required:
+      - cardNumberMask
+      - paymentSystem
+    properties:
+      cardNumberMask:
+        description: Маскированый номер карты
+        type: string
+        pattern: '^\d{6,8}\*+\d{2,4}$'
+      bin:
+        description: BIN банка-эмитента карты
+        type: string
+        pattern: '^\d{6,8}$'
+      lastDigits:
+        description: Последние цифры номера карты
+        type: string
+        pattern: '^\d{2,4}$'
+      paymentSystem:
+        description: Платежная система
+        type: string
+        enum:
+          - visa
+          - mastercard
+          - visaelectron
+          - maestro
+          - forbrugsforeningen
+          - dankort
+          - amex
+          - dinersclub
+          - discover
+          - unionpay
+          - jcb
+          - nspkmir
+      tokenProvider:
+        description: Провайдер платежных токенов
+        type: string
+        enum:
+          - applepay
+          - googlepay
+          - samsungpay
   BankCardPaymentSystem:
     description: Платежная система
     type: string
@@ -826,6 +892,36 @@ definitions:
       - applepay
       - googlepay
       - samsungpay
+  ClientInfo:
+    description: Данные клиентского устройства плательщика
+    type: object
+    required:
+      - fingerprint
+    properties:
+      fingerprint:
+        description: Уникальный отпечаток user agent'а плательщика
+        type: string
+        maxLength: 1000
+      ip:
+        description: IP-адрес плательщика
+        type: string
+        format: ip-address
+        maxLength: 45
+  ContactInfo:
+    description: Контактные данные
+    type: object
+    properties:
+      email:
+        description: Адрес электронной почты
+        type: string
+        format: email
+        maxLength: 100
+      phoneNumber:
+        description: |
+          Номер мобильного телефона с международным префиксом согласно
+          [E.164](https://en.wikipedia.org/wiki/E.164).
+        type: string
+        format: '^\+\d{4,15}$'
   ContinuationToken:
     description: |
       Токен, сигнализирующий о том, что в ответе передана только часть данных.
@@ -836,6 +932,28 @@ definitions:
     description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
     type: string
     pattern: '^[A-Z]{3}$'
+  CustomerPayer:
+    type: object
+    description: Многоразовое платежное средство
+    allOf:
+      - $ref: '#/definitions/Payer'
+      - type: object
+        required:
+          - customerID
+        properties:
+          customerID:
+            description: Идентификатор плательщика
+            type: string
+            maxLength: 40
+            minLength: 1
+          paymentToolToken:
+            readOnly: true
+            description: 'Токен платежного средства, предоставленного плательщиком'
+            type: string
+            maxLength: 1000
+          paymentToolDetails:
+            readOnly: true
+            $ref: '#/definitions/PaymentToolDetails'
   DefaultLogicError:
     type: object
     required:
@@ -852,6 +970,15 @@ definitions:
       message:
         description: Человекочитаемое описание ошибки
         type: string
+  DigitalWalletDetails:
+    discriminator: digitalWalletDetailsType
+    required:
+      - digitalWalletDetailsType
+    properties:
+      digitalWalletDetailsType:
+        type: string
+        enum:
+          - DigitalWalletDetailsQIWI
   ExternalID:
     description: |
       Уникальный в рамках платформы идентификатор сущности для данного участника.
@@ -879,6 +1006,73 @@ definitions:
       countryGeoID:
         type: integer
         format: int32
+  InternationalBankAccount:
+    description: Данные международного банковского счёта
+    type: object
+    properties:
+      number:
+        description: |
+          Номер счёта
+        type: string
+        pattern: '^[0-9A-Z]{8,40}$'
+        example: '123006951'
+      iban:
+        description: |
+          International Bank Account Number [ISO 13616](https://en.wikipedia.org/wiki/International_Bank_Account_Number)
+
+          _* Если `iban` задан, `bankDetails` не обязательны к заполнению._
+        type: string
+        pattern: '^[A-Z0-9]{3,35}$'
+        example: GR1601101250000000012300695
+      bankDetails:
+        $ref: '#/definitions/InternationalBankDetails'
+      correspondentBankAccount:
+        $ref: '#/definitions/InternationalCorrespondentBankAccount'
+  InternationalBankDetails:
+    description: Данные международной банковской организации
+    type: object
+    properties:
+      bic:
+        description: |
+          Business Identifier Code [ISO 9362](https://en.wikipedia.org/wiki/ISO_9362).
+
+          _* Если `bic` задан, прочие данные не обязательны к заполнению._
+        type: string
+        pattern: '^([A-Z0-9]{8}|[A-Z0-9]{11})$'
+        example: |
+          RZBAATWW
+      abartn:
+        description: |
+          [ABA Routing Transit Number](https://en.wikipedia.org/wiki/ABA_routing_transit_number)
+          банковской организации, специфичный для банковской системы USA.
+
+          _* Если `abartn` задан, прочие данные не обязательны к заполнению._
+        type: string
+        pattern: '^[0-9]{9}$'
+        example: '129131673'
+      name:
+        description: Наименование юридического лица банковской организации
+        type: string
+        maxLength: 100
+        example: |
+          RAIFFEISEN BANK INTERNATIONAL AG
+      countryCode:
+        type: string
+        pattern: '^[A-Z]{3}$'
+        example: RUS
+        description: |
+          Страна резиденции банковской организации,
+          alpha-3 код по стандарту [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)
+      address:
+        description: Адрес юридического лица банковской организации
+        type: string
+        maxLength: 1000
+        example: |
+          1030, VIENNA, AM STADTPARK 9
+  InternationalCorrespondentBankAccount:
+    allOf:
+      - description: Данные корреспондентского счёта указанного банка
+      - $ref: '#/definitions/InternationalBankAccount'
   Invoice:
     type: object
     allOf:
@@ -1049,12 +1243,81 @@ definitions:
         enum:
           - PaymentFlowInstant
           - PaymentFlowHold
+  PaymentFlowHold:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentFlow'
+      - type: object
+        required:
+          - onHoldExpiration
+        properties:
+          onHoldExpiration:
+            description: Политика управления удержанием денежных средств
+            type: string
+            default: cancel
+            enum:
+              - cancel
+              - capture
+          heldUntil:
+            description: 'Дата и время, до которого происходит удержание денежных средств'
+            type: string
+            format: date-time
+            readOnly: true
+  PaymentFlowInstant:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentFlow'
   PaymentMakeRecurrent:
     description: |
       Признак создания родительского рекуррентного платежа.
       Успешно проведеный платеж с этим признаком можно использовать как родительский в других рекуррентных платежах.
     type: boolean
     default: false
+  PaymentRecurrentParent:
+    type: object
+    description: 'Родительский платеж, на основе которого создан текущий рекуррентный платеж'
+    required:
+      - invoiceID
+      - paymentID
+    properties:
+      invoiceID:
+        description: Идентификатор инвойса
+        type: string
+      paymentID:
+        description: Идентификатор платежа
+        type: string
+  PaymentResource:
+    type: object
+    description: Данные одноразового платежного средства
+    required:
+      - paymentToolToken
+    properties:
+      paymentToolToken:
+        description: 'Токен платежного средства, предоставленного плательщиком'
+        type: string
+        maxLength: 1000
+      paymentSession:
+        description: Идентификатор платежной сессии
+        type: string
+        maxLength: 1000
+      paymentToolDetails:
+        $ref: '#/definitions/PaymentToolDetails'
+      clientInfo:
+        allOf:
+          - $ref: '#/definitions/ClientInfo'
+          - readOnly: true
+  PaymentResourcePayer:
+    type: object
+    description: Одноразовое платежное средство
+    allOf:
+      - $ref: '#/definitions/Payer'
+      - $ref: '#/definitions/PaymentResource'
+      - type: object
+        required:
+          - contactInfo
+        properties:
+          contactInfo:
+            $ref: '#/definitions/ContactInfo'
   PaymentSearchResult:
     type: object
     allOf:
@@ -1137,6 +1400,46 @@ definitions:
           - failed
       error:
         $ref: '#/definitions/PaymentError'
+  PaymentTerminalDetails:
+    required:
+      - provider
+    properties:
+      provider:
+        description: Провайдер терминальной сети
+        type: string
+        enum:
+          - euroset
+  PaymentTerminalProvider:
+    description: Провайдер терминальной сети
+    type: string
+    enum:
+      - euroset
+  PaymentToolDetails:
+    type: object
+    discriminator: detailsType
+    description: Детали платежного средства
+    readOnly: true
+    required:
+      - detailsType
+    properties:
+      detailsType:
+        description: Тип информации о платежном средстве
+        type: string
+  PaymentToolDetailsBankCard:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentToolDetails'
+      - $ref: '#/definitions/BankCardDetails'
+  PaymentToolDetailsDigitalWallet:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentToolDetails'
+      - $ref: '#/definitions/DigitalWalletDetails'
+  PaymentToolDetailsPaymentTerminal:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentToolDetails'
+      - $ref: '#/definitions/PaymentTerminalDetails'
   Payout:
     type: object
     required:
@@ -1252,6 +1555,56 @@ definitions:
         type: string
     required:
       - detailsType
+  PayoutToolDetailsBankAccount:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PayoutToolDetails'
+      - $ref: '#/definitions/BankAccount'
+  PayoutToolDetailsBankCard:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PayoutToolDetails'
+      - $ref: '#/definitions/BankCardDetails'
+  PayoutToolDetailsInternationalBankAccount:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PayoutToolDetails'
+      - $ref: '#/definitions/InternationalBankAccount'
+  PayoutToolDetailsWalletInfo:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PayoutToolDetails'
+      - type: object
+        required:
+          - walletID
+        properties:
+          walletID:
+            description: Идентификатор кошелька
+            type: string
+            maxLength: 40
+            minLength: 1
+  RecurrentPayer:
+    type: object
+    description: Многоразовое платежное средство на основе другого платежа
+    allOf:
+      - $ref: '#/definitions/Payer'
+      - type: object
+        required:
+          - contactInfo
+          - recurrentParentPayment
+        properties:
+          contactInfo:
+            $ref: '#/definitions/ContactInfo'
+          recurrentParentPayment:
+            $ref: '#/definitions/PaymentRecurrentParent'
+          paymentToolToken:
+            readOnly: true
+            description: 'Токен платежного средства, предоставленного плательщиком'
+            type: string
+            maxLength: 1000
+          paymentToolDetails:
+            readOnly: true
+            $ref: '#/definitions/PaymentToolDetails'
   Refund:
     type: object
     allOf:
@@ -1325,6 +1678,11 @@ definitions:
           message:
             description: 'Описание ошибки, пригодное для восприятия человеком'
             type: string
+  Residence:
+    description: 'Резиденция, alpha-3 код по стандарту [ISO 3166-1](https://en.wikipedia.org/wiki/ISO_3166-1)'
+    type: string
+    pattern: '^[A-Z]{3}$'
+    example: RUS
   SubError:
     description: |
       Детализация описания ошибки
