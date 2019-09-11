@@ -947,12 +947,10 @@ definitions:
             maxLength: 40
             minLength: 1
           paymentToolToken:
-            readOnly: true
             description: 'Токен платежного средства, предоставленного плательщиком'
             type: string
             maxLength: 1000
           paymentToolDetails:
-            readOnly: true
             $ref: '#/definitions/PaymentToolDetails'
   DefaultLogicError:
     type: object
@@ -1019,8 +1017,6 @@ definitions:
       iban:
         description: |
           International Bank Account Number [ISO 13616](https://en.wikipedia.org/wiki/International_Bank_Account_Number)
-
-          _* Если `iban` задан, `bankDetails` не обязательны к заполнению._
         type: string
         pattern: '^[A-Z0-9]{3,35}$'
         example: GR1601101250000000012300695
@@ -1035,8 +1031,6 @@ definitions:
       bic:
         description: |
           Business Identifier Code [ISO 9362](https://en.wikipedia.org/wiki/ISO_9362).
-
-          _* Если `bic` задан, прочие данные не обязательны к заполнению._
         type: string
         pattern: '^([A-Z0-9]{8}|[A-Z0-9]{11})$'
         example: |
@@ -1045,8 +1039,6 @@ definitions:
         description: |
           [ABA Routing Transit Number](https://en.wikipedia.org/wiki/ABA_routing_transit_number)
           банковской организации, специфичный для банковской системы USA.
-
-          _* Если `abartn` задан, прочие данные не обязательны к заполнению._
         type: string
         pattern: '^[0-9]{9}$'
         example: '129131673'
@@ -1262,7 +1254,6 @@ definitions:
             description: 'Дата и время, до которого происходит удержание денежных средств'
             type: string
             format: date-time
-            readOnly: true
   PaymentFlowInstant:
     type: object
     allOf:
@@ -1305,7 +1296,6 @@ definitions:
       clientInfo:
         allOf:
           - $ref: '#/definitions/ClientInfo'
-          - readOnly: true
   PaymentResourcePayer:
     type: object
     description: Одноразовое платежное средство
@@ -1418,7 +1408,6 @@ definitions:
     type: object
     discriminator: detailsType
     description: Детали платежного средства
-    readOnly: true
     required:
       - detailsType
     properties:
@@ -1598,12 +1587,10 @@ definitions:
           recurrentParentPayment:
             $ref: '#/definitions/PaymentRecurrentParent'
           paymentToolToken:
-            readOnly: true
             description: 'Токен платежного средства, предоставленного плательщиком'
             type: string
             maxLength: 1000
           paymentToolDetails:
-            readOnly: true
             $ref: '#/definitions/PaymentToolDetails'
   Refund:
     type: object
