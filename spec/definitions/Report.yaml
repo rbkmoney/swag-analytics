@@ -5,7 +5,7 @@ required:
   - fromTime
   - toTime
   - status
-  - type
+  - reportType
   - files
 properties:
   id:
