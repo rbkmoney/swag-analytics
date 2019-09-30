@@ -9,8 +9,8 @@ post:
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - $ref: '#/parameters/reportType'
-    - $ref: '#/parameters/partyId'
-    - $ref: '#/parameters/shopIDPathOpt'
+    - $ref: '#/parameters/partyID'
+    - $ref: '#/parameters/shopID'
   responses:
     '201':
       description: Отчет создан
@@ -59,8 +59,8 @@ get:
         enum:
           - provisionOfService
           - paymentRegistry
-    - $ref: '#/parameters/partyId'
-    - $ref: '#/parameters/shopIDPathOpt'
+    - $ref: '#/parameters/partyID'
+    - $ref: '#/parameters/shopID'
   responses:
     '200':
       description: Найденные отчеты

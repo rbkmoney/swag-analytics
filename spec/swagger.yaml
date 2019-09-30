@@ -256,15 +256,15 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  partyId:
-    name: partyId
+  partyID:
+    name: partyID
     in: query
     description: Идентификатор участника
     required: true
     type: string
     maxLength: 32
     minLength: 32
-  shopIDPathOpt:
+  shopID:
     name: shopID
     in: query
     description: Идентификатор магазина
