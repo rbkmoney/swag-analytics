@@ -6,6 +6,7 @@ required:
   - toTime
   - status
   - reportType
+  - partyId
   - files
 properties:
   id:
@@ -36,6 +37,11 @@ properties:
     enum:
       - provisionOfService
       - paymentRegistry
+  partyId:
+    description: Идентификатор участника
+    type: string
+    maxLength: 32
+    minLength: 32
   shopId:
     description: Идентификатор магазина
     type: string
