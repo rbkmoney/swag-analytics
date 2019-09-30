@@ -9,6 +9,7 @@ post:
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - $ref: '#/parameters/reportType'
+    - $ref: '#/parameters/partyId'
     - $ref: '#/parameters/shopIDPathOpt'
   responses:
     '201':
@@ -58,6 +59,7 @@ get:
         enum:
           - provisionOfService
           - paymentRegistry
+    - $ref: '#/parameters/partyId'
     - $ref: '#/parameters/shopIDPathOpt'
   responses:
     '200':
