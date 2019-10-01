@@ -262,8 +262,6 @@ parameters:
     description: Идентификатор участника
     required: true
     type: string
-    maxLength: 32
-    minLength: 32
   shopID:
     name: shopID
     in: query
