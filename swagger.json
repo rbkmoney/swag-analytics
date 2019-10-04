@@ -1181,12 +1181,6 @@
           },
           {
             "$ref": "#/parameters/reportID"
-          },
-          {
-            "$ref": "#/parameters/partyID"
-          },
-          {
-            "$ref": "#/parameters/shopID"
           }
         ],
         "responses": {
