@@ -1464,6 +1464,27 @@
         }
       }
     },
+    "DigitalWalletDetailsQIWI": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/DigitalWalletDetails"
+        },
+        {
+          "type": "object",
+          "required": [
+            "phoneNumberMask"
+          ],
+          "properties": {
+            "phoneNumberMask": {
+              "type": "string",
+              "description": "Маскированный номер телефона плательщика в международном формате, выступающий\nв роли идентификатора кошелька Visa QIWI Wallet.\n",
+              "pattern": "^\\+\\d\\*{1,10}\\d{2,4}$",
+              "example": "+7******3210"
+            }
+          }
+        }
+      ]
+    },
     "ExternalID": {
       "description": "Уникальный в рамках платформы идентификатор сущности для данного участника.\nИспользуется для обеспечения идемпотентности запроса.\n",
       "type": "string",
