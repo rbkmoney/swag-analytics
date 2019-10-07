@@ -1977,6 +1977,113 @@ definitions:
     type: string
     pattern: '^[A-Z]{3}$'
     example: RUS
+  Shop:
+    description: Данные магазина
+    type: object
+    required:
+      - id
+      - createdAt
+      - isBlocked
+      - isSuspended
+      - location
+      - categoryID
+      - details
+      - contractID
+    properties:
+      id:
+        description: Идентификатор магазина
+        type: string
+      createdAt:
+        description: Дата и время создания
+        type: string
+        format: date-time
+      isBlocked:
+        description: Заблокирован ли магазин?
+        type: boolean
+      isSuspended:
+        description: Приостановлены ли операции в рамках магазина?
+        type: boolean
+      categoryID:
+        description: |
+          Идентификатор категории товаров и услуг, предлагаемых в этом магазине
+        type: integer
+        format: int32
+      location:
+        $ref: '#/definitions/ShopLocation'
+      details:
+        $ref: '#/definitions/ShopDetails'
+      contractID:
+        description: |
+          Идентификатор договора, на основании которого производится обслуживание
+          магазина
+        type: string
+      payoutToolID:
+        description: |
+          Идентификатор средства вывода в рамках контракта, используемое в процессе
+          вывода по магазину
+        type: string
+      scheduleID:
+        description: Идентификатор расписания выводов
+        type: integer
+        format: int32
+      account:
+        $ref: '#/definitions/ShopAccount'
+  ShopAccount:
+    description: Счета магазина
+    type: object
+    required:
+      - currency
+      - guaranteeID
+      - settlementID
+    properties:
+      currency:
+        x-rebillyMerge:
+          - $ref: '#/definitions/Currency'
+      guaranteeID:
+        type: integer
+        format: int64
+      settlementID:
+        type: integer
+        format: int64
+  ShopDetails:
+    type: object
+    required:
+      - name
+    properties:
+      name:
+        description: Название магазина
+        type: string
+        maxLength: 100
+      description:
+        description: Краткое описание
+        type: string
+        maxLength: 1000
+  ShopLocation:
+    description: 'Местоположение магазина, по которому можно его найти'
+    type: object
+    discriminator: locationType
+    required:
+      - locationType
+    properties:
+      locationType:
+        description: Тип местоположения
+        type: string
+        enum:
+          - ShopLocationUrl
+  ShopLocationUrl:
+    description: Местоположение в Интернете
+    type: object
+    allOf:
+      - $ref: '#/definitions/ShopLocation'
+      - type: object
+        required:
+          - url
+        properties:
+          url:
+            description: URL сайта магазина
+            type: string
+            format: uri
+            maxLength: 1000
   SubError:
     description: |
       Детализация описания ошибки
