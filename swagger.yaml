@@ -2037,8 +2037,9 @@ definitions:
       - settlementID
     properties:
       currency:
-        x-rebillyMerge:
-          - $ref: '#/definitions/Currency'
+        description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
+        type: string
+        pattern: '^[A-Z]{3}$'
       guaranteeID:
         type: integer
         format: int64
