@@ -891,7 +891,7 @@ paths:
       description: Получить список отчетов по данному магазину за период
       tags:
         - Reports
-      operationId: getReports
+      operationId: searchReports
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
@@ -909,13 +909,30 @@ paths:
               - paymentRegistry
         - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
+        - name: continuationToken
+          in: query
+          required: false
+          description: |
+            Токен, сигнализирующий о том, что в ответе передана только часть данных.
+            Для получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.
+            Если токена нет, получена последняя часть данных.
+          type: string
       responses:
         '200':
           description: Найденные отчеты
           schema:
-            type: array
-            items:
-              $ref: '#/definitions/Report'
+            type: object
+            properties:
+              continuationToken:
+                description: |
+                  Токен, сигнализирующий о том, что в ответе передана только часть данных.
+                  Для получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.
+                  Если токена нет, получена последняя часть данных.
+                type: string
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/Report'
         '400':
           description: Ошибочные данные для получения
           schema:
