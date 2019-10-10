@@ -63,10 +63,10 @@ get:
     - $ref: '#/parameters/partyID'
     - $ref: '#/parameters/shopID'
     - x-merge-obj:
-        - name: continuationToken
-          in: query
-          required: false
-        - $ref: '#/definitions/ContinuationToken'
+      - name: continuationToken
+        in: query
+        required: false
+      - $ref: '#/definitions/ContinuationToken'
   responses:
     '200':
       description: Найденные отчеты
