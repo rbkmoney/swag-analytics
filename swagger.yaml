@@ -238,7 +238,6 @@ parameters:
     required: true
     type: string
     enum:
-      - provisionOfService
       - paymentRegistry
   reportID:
     name: reportID
@@ -905,7 +904,6 @@ paths:
           items:
             type: string
             enum:
-              - provisionOfService
               - paymentRegistry
         - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
@@ -1965,7 +1963,6 @@ definitions:
         description: Тип отчета
         type: string
         enum:
-          - provisionOfService
           - paymentRegistry
       partyID:
         description: Идентификатор участника
