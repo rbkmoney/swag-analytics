@@ -238,6 +238,7 @@ parameters:
     required: true
     type: string
     enum:
+      - provisionOfService
       - paymentRegistry
   reportID:
     name: reportID
@@ -856,7 +857,13 @@ paths:
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
-        - $ref: '#/parameters/reportType'
+        - name: reportType
+          in: query
+          description: Тип отчета
+          required: true
+          type: string
+          enum:
+            - paymentRegistry
         - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
       responses:
@@ -904,6 +911,7 @@ paths:
           items:
             type: string
             enum:
+              - provisionOfService
               - paymentRegistry
         - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
@@ -1963,6 +1971,7 @@ definitions:
         description: Тип отчета
         type: string
         enum:
+          - provisionOfService
           - paymentRegistry
       partyID:
         description: Идентификатор участника

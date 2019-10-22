@@ -242,6 +242,7 @@
       "required": true,
       "type": "string",
       "enum": [
+        "provisionOfService",
         "paymentRegistry"
       ]
     },
@@ -1035,7 +1036,14 @@
             "$ref": "#/parameters/toTime"
           },
           {
-            "$ref": "#/parameters/reportType"
+            "name": "reportType",
+            "in": "query",
+            "description": "Тип отчета",
+            "required": true,
+            "type": "string",
+            "enum": [
+              "paymentRegistry"
+            ]
           },
           {
             "$ref": "#/parameters/partyID"
@@ -1110,6 +1118,7 @@
             "items": {
               "type": "string",
               "enum": [
+                "provisionOfService",
                 "paymentRegistry"
               ]
             }
@@ -2552,6 +2561,7 @@
           "description": "Тип отчета",
           "type": "string",
           "enum": [
+            "provisionOfService",
             "paymentRegistry"
           ]
         },
