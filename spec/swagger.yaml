@@ -260,7 +260,6 @@ parameters:
     name: partyID
     in: query
     description: Идентификатор участника
-    required: true
     type: string
     maxLength: 40
     minLength: 1
