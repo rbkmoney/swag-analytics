@@ -215,14 +215,6 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  partyID:
-    name: partyID
-    in: query
-    description: Идентификатор участника
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
   shopID:
     name: shopID
     in: query
@@ -864,7 +856,6 @@ paths:
           type: string
           enum:
             - paymentRegistry
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
       responses:
         '201':
@@ -913,7 +904,6 @@ paths:
             enum:
               - provisionOfService
               - paymentRegistry
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - name: continuationToken
           in: query

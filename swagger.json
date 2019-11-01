@@ -217,15 +217,6 @@
       "maxLength": 40,
       "minLength": 1
     },
-    "partyID": {
-      "name": "partyID",
-      "in": "query",
-      "description": "Идентификатор участника",
-      "required": true,
-      "type": "string",
-      "maxLength": 40,
-      "minLength": 1
-    },
     "shopID": {
       "name": "shopID",
       "in": "query",
@@ -1046,9 +1037,6 @@
             ]
           },
           {
-            "$ref": "#/parameters/partyID"
-          },
-          {
             "$ref": "#/parameters/shopID"
           }
         ],
@@ -1122,9 +1110,6 @@
                 "paymentRegistry"
               ]
             }
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
