@@ -1,0 +1,21 @@
+type: object
+allOf:
+  - type: object
+    required:
+      - count
+      - currency
+    properties:
+      status:
+        description: Статус платежа
+        type: string
+        enum:
+          - pending
+          - processed
+          - captured
+          - cancelled
+          - refunded
+          - failed
+      offsetAmounts:
+        type: array
+        items:
+          $ref: '#/definitions/OffsetCount'
