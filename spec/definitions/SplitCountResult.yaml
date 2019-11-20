@@ -2,14 +2,13 @@ type: object
 allOf:
   - type: object
     required:
-      - offset
-      - count
       - currency
+      - statusOffsetCounts
     properties:
       currency:
         x-merge-obj:
           - $ref: '#/definitions/Currency'
-      offsetCounts:
+      statusOffsetCounts:
         type: array
         items:
           $ref: '#/definitions/StatusOffsetCount'

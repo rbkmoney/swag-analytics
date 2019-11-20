@@ -2,8 +2,8 @@ type: object
 allOf:
   - type: object
     required:
-      - count
-      - currency
+      - status
+      - offsetCount
     properties:
       status:
         description: Статус платежа
@@ -15,7 +15,7 @@ allOf:
           - cancelled
           - refunded
           - failed
-      offsetAmounts:
+      offsetCount:
         type: array
         items:
           $ref: '#/definitions/OffsetCount'
