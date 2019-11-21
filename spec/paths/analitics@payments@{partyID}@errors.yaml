@@ -2,7 +2,7 @@ get:
   description: Получение распределения ошибок
   tags:
     - Analitics
-  operationId: getPaymentsAmount
+  operationId: getPaymentsErrors
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
