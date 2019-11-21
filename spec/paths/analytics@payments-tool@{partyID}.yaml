@@ -1,8 +1,8 @@
 get:
-  description: Получение колличества платежей с группировкой по валютам
+  description: Получение распределения использования платежных инструментов
   tags:
-    - Analitics
-  operationId: getPaymentsCount
+    - Analytics
+  operationId: getPaymentsToolDistribution
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
@@ -11,7 +11,7 @@ get:
     - $ref: '#/parameters/toTime'
   responses:
     '200':
-      description: Средний колличества платежей с группировкой по валютам
+      description: Распределение использования платежных инструментов
       schema:
         type: object
         properties:
@@ -21,7 +21,7 @@ get:
           result:
             type: array
             items:
-              $ref: '#/definitions/CountResult'
+              $ref: '#/definitions/PaymentsToolDistributionResult'
     '404':
       $ref: '#/responses/NotFound'
     '401':

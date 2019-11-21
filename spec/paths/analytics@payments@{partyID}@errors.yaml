@@ -1,8 +1,8 @@
 get:
-  description: Получение распределения использования платежных инструментов
+  description: Получение распределения ошибок
   tags:
-    - Analitics
-  operationId: getPaymentsToolDistribution
+    - Analytics
+  operationId: getPaymentsErrorDistribution
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
@@ -11,7 +11,7 @@ get:
     - $ref: '#/parameters/toTime'
   responses:
     '200':
-      description: Распределение использования платежных инструментов
+      description: Распределение ошибок
       schema:
         type: object
         properties:
@@ -21,7 +21,7 @@ get:
           result:
             type: array
             items:
-              $ref: '#/definitions/PaymentsToolDistributionResult'
+              $ref: '#/definitions/PaymentsErrorsDistributionResult'
     '404':
       $ref: '#/responses/NotFound'
     '401':

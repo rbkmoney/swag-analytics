@@ -1,8 +1,8 @@
 get:
-  description: Получение списка возвратов с группировкой по валютам
+  description: Получение списка оборотов с группировкой по валютам
   tags:
-    - Analitics
-  operationId: getRefundsAmount
+    - Analytics
+  operationId: getPaymentsAmount
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
@@ -11,7 +11,7 @@ get:
     - $ref: '#/parameters/toTime'
   responses:
     '200':
-      description: Список возвратов с группировкой по валютам
+      description: Список оборотов с группировкой по валютам
       schema:
         type: object
         properties:

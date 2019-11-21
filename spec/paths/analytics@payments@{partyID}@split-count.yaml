@@ -1,17 +1,18 @@
 get:
-  description: Получение списка оборотов с группировкой по валютам
+  description: Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам
   tags:
-    - Analitics
-  operationId: getPaymentsAmount
+    - Analytics
+  operationId: getPaymentsSplitCount
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
     - $ref: '#/parameters/shopID'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
+    - $ref: '#/parameters/splitUnit'
   responses:
     '200':
-      description: Список оборотов с группировкой по валютам
+      description: Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам
       schema:
         type: object
         properties:
@@ -21,7 +22,7 @@ get:
           result:
             type: array
             items:
-              $ref: '#/definitions/AmountResult'
+              $ref: '#/definitions/SplitCountResult'
     '404':
       $ref: '#/responses/NotFound'
     '401':
