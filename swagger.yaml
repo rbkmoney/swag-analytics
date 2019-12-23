@@ -1120,6 +1120,23 @@ definitions:
       Для получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.
       Если токена нет, получена последняя часть данных.
     type: string
+  CryptoCurrency:
+    description: Тип криптовалюты
+    type: string
+    enum:
+      - bitcoin
+      - litecoin
+      - bitcoinCash
+      - ripple
+      - ethereum
+      - zcash
+  CryptoWalletDetails:
+    required:
+      - cryptoCurrency
+    properties:
+      cryptoCurrency:
+        x-rebillyMerge:
+          - $ref: '#/definitions/CryptoCurrency'
   Currency:
     description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
     type: string
@@ -1454,6 +1471,15 @@ definitions:
         description: Причина отмены или погашения инвойса
         type: string
         maxLength: 1000
+  MobileCommerceDetails:
+    required:
+      - phoneNumber
+    properties:
+      phoneNumber:
+        description: Маскированый номер мобильного телефона
+        type: string
+        pattern: '^\+\d\*{1,10}\d{2,4}$'
+        example: +7******0102
   Payer:
     type: object
     discriminator: payerType
@@ -1677,11 +1703,21 @@ definitions:
     allOf:
       - $ref: '#/definitions/PaymentToolDetails'
       - $ref: '#/definitions/BankCardDetails'
+  PaymentToolDetailsCryptoWallet:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentToolDetails'
+      - $ref: '#/definitions/CryptoWalletDetails'
   PaymentToolDetailsDigitalWallet:
     type: object
     allOf:
       - $ref: '#/definitions/PaymentToolDetails'
       - $ref: '#/definitions/DigitalWalletDetails'
+  PaymentToolDetailsMobileCommerce:
+    type: object
+    allOf:
+      - $ref: '#/definitions/PaymentToolDetails'
+      - $ref: '#/definitions/MobileCommerceDetails'
   PaymentToolDetailsPaymentTerminal:
     type: object
     allOf:

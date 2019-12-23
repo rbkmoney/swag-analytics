@@ -1401,6 +1401,32 @@
       "description": "Токен, сигнализирующий о том, что в ответе передана только часть данных.\nДля получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.\nЕсли токена нет, получена последняя часть данных.\n",
       "type": "string"
     },
+    "CryptoCurrency": {
+      "description": "Тип криптовалюты",
+      "type": "string",
+      "enum": [
+        "bitcoin",
+        "litecoin",
+        "bitcoinCash",
+        "ripple",
+        "ethereum",
+        "zcash"
+      ]
+    },
+    "CryptoWalletDetails": {
+      "required": [
+        "cryptoCurrency"
+      ],
+      "properties": {
+        "cryptoCurrency": {
+          "x-rebillyMerge": [
+            {
+              "$ref": "#/definitions/CryptoCurrency"
+            }
+          ]
+        }
+      }
+    },
     "Currency": {
       "description": "Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).",
       "type": "string",
@@ -1830,6 +1856,19 @@
         }
       }
     },
+    "MobileCommerceDetails": {
+      "required": [
+        "phoneNumber"
+      ],
+      "properties": {
+        "phoneNumber": {
+          "description": "Маскированый номер мобильного телефона",
+          "type": "string",
+          "pattern": "^\\+\\d\\*{1,10}\\d{2,4}$",
+          "example": "+7******0102"
+        }
+      }
+    },
     "Payer": {
       "type": "object",
       "discriminator": "payerType",
@@ -2151,6 +2190,17 @@
         }
       ]
     },
+    "PaymentToolDetailsCryptoWallet": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/PaymentToolDetails"
+        },
+        {
+          "$ref": "#/definitions/CryptoWalletDetails"
+        }
+      ]
+    },
     "PaymentToolDetailsDigitalWallet": {
       "type": "object",
       "allOf": [
@@ -2159,6 +2209,17 @@
         },
         {
           "$ref": "#/definitions/DigitalWalletDetails"
+        }
+      ]
+    },
+    "PaymentToolDetailsMobileCommerce": {
+      "type": "object",
+      "allOf": [
+        {
+          "$ref": "#/definitions/PaymentToolDetails"
+        },
+        {
+          "$ref": "#/definitions/MobileCommerceDetails"
         }
       ]
     },
