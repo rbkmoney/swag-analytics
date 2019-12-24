@@ -32,14 +32,6 @@ get:
         - cancelled
         - refunded
         - failed
-    - name: paymentFlow
-      in: query
-      description: Flow платежа
-      required: false
-      type: string
-      enum:
-        - instant
-        - hold
     - name: paymentMethod
       in: query
       description: Метод оплаты
@@ -60,13 +52,6 @@ get:
     - name: invoiceID
       in: query
       description: Идентификатор инвойса
-      required: false
-      type: string
-      maxLength: 40
-      minLength: 1
-    - name: paymentID
-      in: query
-      description: Идентификатор платежа
       required: false
       type: string
       maxLength: 40
@@ -126,16 +111,16 @@ get:
       required: false
       type: string
       pattern: '^[a-zA-Z0-9]{12}$'
-    - name: paymentAmount
+    - name: invoiceAmountFrom
       in: query
-      description: Сумма платежа
+      description: Минимальная сумма инвойса
       required: false
       type: integer
       format: int64
       minimum: 1
-    - name: invoiceAmount
+    - name: invoiceAmountTo
       in: query
-      description: Сумма инвойса
+      description: Максимальная сумма инвойса
       required: false
       type: integer
       format: int64

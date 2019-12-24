@@ -22,14 +22,6 @@ get:
         - cancelled
         - refunded
         - failed
-    - name: paymentFlow
-      in: query
-      description: Flow платежа
-      required: false
-      type: string
-      enum:
-        - instant
-        - hold
     - name: paymentMethod
       in: query
       description: Метод оплаты
@@ -50,13 +42,6 @@ get:
     - name: invoiceID
       in: query
       description: Идентификатор инвойса
-      required: false
-      type: string
-      maxLength: 40
-      minLength: 1
-    - name: paymentID
-      in: query
-      description: Идентификатор платежа
       required: false
       type: string
       maxLength: 40
@@ -106,13 +91,6 @@ get:
       required: false
       type: string
       pattern: '^[a-zA-Z0-9]{12}$'
-    - name: approvalCode
-      in: query
-      description: 'Authorization Approval Code'
-      required: false
-      type: string
-      maxLength: 40
-      minLength: 1
     - x-merge-obj:
       - name: bankCardTokenProvider
         in: query
@@ -123,9 +101,15 @@ get:
         in: query
         required: false
       - $ref: '#/definitions/BankCardPaymentSystem'
-    - name: paymentAmount
+    - name: paymentAmountFrom
       in: query
-      description: Сумма платежа
+      description: Минимальная сумма платежа
+      required: false
+      type: integer
+      format: int64
+    - name: paymentAmountTo
+      in: query
+      description: Максимальная сумма платежа
       required: false
       type: integer
       format: int64
