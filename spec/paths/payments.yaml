@@ -114,15 +114,15 @@ get:
       maxLength: 40
       minLength: 1
     - x-merge-obj:
-        - name: bankCardTokenProvider
-          in: query
-          required: false
-        - $ref: '#/definitions/BankCardTokenProvider'
+      - name: bankCardTokenProvider
+        in: query
+        required: false
+      - $ref: '#/definitions/BankCardTokenProvider'
     - x-merge-obj:
-        - name: bankCardPaymentSystem
-          in: query
-          required: false
-        - $ref: '#/definitions/BankCardPaymentSystem'
+      - name: bankCardPaymentSystem
+        in: query
+        required: false
+      - $ref: '#/definitions/BankCardPaymentSystem'
     - name: paymentAmountFrom
       in: query
       description: Минимальная сумма платежа
