@@ -22,6 +22,14 @@ get:
         - cancelled
         - refunded
         - failed
+    - name: paymentFlow
+      in: query
+      description: Flow платежа
+      required: false
+      type: string
+      enum:
+        - instant
+        - hold
     - name: paymentMethod
       in: query
       description: Метод оплаты
@@ -42,6 +50,13 @@ get:
     - name: invoiceID
       in: query
       description: Идентификатор инвойса
+      required: false
+      type: string
+      maxLength: 40
+      minLength: 1
+    - name: paymentID
+      in: query
+      description: Идентификатор платежа
       required: false
       type: string
       maxLength: 40
@@ -91,22 +106,30 @@ get:
       required: false
       type: string
       pattern: '^[a-zA-Z0-9]{12}$'
+    - name: approvalCode
+      in: query
+      description: 'Authorization Approval Code'
+      required: false
+      type: string
+      maxLength: 40
+      minLength: 1
     - x-merge-obj:
-      - name: bankCardTokenProvider
-        in: query
-        required: false
-      - $ref: '#/definitions/BankCardTokenProvider'
+        - name: bankCardTokenProvider
+          in: query
+          required: false
+        - $ref: '#/definitions/BankCardTokenProvider'
     - x-merge-obj:
-      - name: bankCardPaymentSystem
-        in: query
-        required: false
-      - $ref: '#/definitions/BankCardPaymentSystem'
+        - name: bankCardPaymentSystem
+          in: query
+          required: false
+        - $ref: '#/definitions/BankCardPaymentSystem'
     - name: paymentAmountFrom
       in: query
       description: Минимальная сумма платежа
       required: false
       type: integer
       format: int64
+      minimum: 1
     - name: paymentAmountTo
       in: query
       description: Максимальная сумма платежа
@@ -122,10 +145,10 @@ get:
       items:
         type: string
     - x-merge-obj:
-      - name: continuationToken
-        in: query
-        required: false
-      - $ref: '#/definitions/ContinuationToken'
+        - name: continuationToken
+          in: query
+          required: false
+        - $ref: '#/definitions/ContinuationToken'
   responses:
     '200':
       description: Найденные платежи

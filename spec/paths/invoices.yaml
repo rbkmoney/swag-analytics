@@ -20,35 +20,6 @@ get:
         - cancelled
         - paid
         - fulfilled
-    - name: paymentStatus
-      in: query
-      description: Статус платежа для поиска
-      required: false
-      type: string
-      enum:
-        - pending
-        - processed
-        - captured
-        - cancelled
-        - refunded
-        - failed
-    - name: paymentMethod
-      in: query
-      description: Метод оплаты
-      required: false
-      type: string
-      enum:
-        - bankCard
-        - paymentTerminal
-    - name: paymentTerminalProvider
-      in: query
-      description: Провайдер платежного терминала
-      required: false
-      type: string
-      enum:
-        - euroset
-        - wechat
-        - alipay
     - name: invoiceID
       in: query
       description: Идентификатор инвойса
@@ -84,15 +55,15 @@ get:
       maxLength: 40
       minLength: 1
     - x-merge-obj:
-      - name: bankCardTokenProvider
-        in: query
-        required: false
-      - $ref: '#/definitions/BankCardTokenProvider'
+        - name: bankCardTokenProvider
+          in: query
+          required: false
+        - $ref: '#/definitions/BankCardTokenProvider'
     - x-merge-obj:
-      - name: bankCardPaymentSystem
-        in: query
-        required: false
-      - $ref: '#/definitions/BankCardPaymentSystem'
+        - name: bankCardPaymentSystem
+          in: query
+          required: false
+        - $ref: '#/definitions/BankCardPaymentSystem'
     - name: first6
       in: query
       description: Первые 6 цифр номера карты
@@ -133,10 +104,10 @@ get:
       items:
         type: string
     - x-merge-obj:
-      - name: continuationToken
-        in: query
-        required: false
-      - $ref: '#/definitions/ContinuationToken'
+        - name: continuationToken
+          in: query
+          required: false
+        - $ref: '#/definitions/ContinuationToken'
   responses:
     '200':
       description: Найденные инвойсы
