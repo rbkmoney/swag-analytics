@@ -356,7 +356,9 @@
             "required": false,
             "type": "string",
             "enum": [
-              "euroset"
+              "euroset",
+              "wechat",
+              "alipay"
             ]
           },
           {
@@ -606,7 +608,9 @@
             "required": false,
             "type": "string",
             "enum": [
-              "euroset"
+              "euroset",
+              "wechat",
+              "alipay"
             ]
           },
           {
@@ -2153,7 +2157,9 @@
           "description": "Провайдер терминальной сети",
           "type": "string",
           "enum": [
-            "euroset"
+            "euroset",
+            "wechat",
+            "alipay"
           ]
         }
       }
@@ -2162,7 +2168,9 @@
       "description": "Провайдер терминальной сети",
       "type": "string",
       "enum": [
-        "euroset"
+        "euroset",
+        "wechat",
+        "alipay"
       ]
     },
     "PaymentToolDetails": {
