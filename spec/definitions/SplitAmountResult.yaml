@@ -2,9 +2,13 @@ type: object
 allOf:
   - type: object
     required:
-      - amount
+      - offsetAmounts
       - currency
+      - splitUnit
     properties:
+      splitUnit:
+        x-merge-obj:
+         - $ref: '#/parameters/splitUnit'
       currency:
         x-merge-obj:
           - $ref: '#/definitions/Currency'
