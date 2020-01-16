@@ -15,9 +15,6 @@ get:
       schema:
         type: object
         properties:
-          continuationToken:
-            x-merge-obj:
-              - $ref: '#/definitions/ContinuationToken'
           result:
             type: array
             items:
