@@ -439,6 +439,8 @@ paths:
             - euroset
             - wechat
             - alipay
+            - zotapay
+            - qps
         - name: invoiceID
           in: query
           description: Идентификатор инвойса
@@ -1580,6 +1582,8 @@ definitions:
           - euroset
           - wechat
           - alipay
+          - zotapay
+          - qps
   PaymentTerminalProvider:
     description: Провайдер терминальной сети
     type: string
@@ -1587,6 +1591,8 @@ definitions:
       - euroset
       - wechat
       - alipay
+      - zotapay
+      - qps
   PaymentToolDetails:
     type: object
     discriminator: detailsType

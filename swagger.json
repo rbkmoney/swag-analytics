@@ -460,7 +460,9 @@
             "enum": [
               "euroset",
               "wechat",
-              "alipay"
+              "alipay",
+              "zotapay",
+              "qps"
             ]
           },
           {
@@ -2018,7 +2020,9 @@
           "enum": [
             "euroset",
             "wechat",
-            "alipay"
+            "alipay",
+            "zotapay",
+            "qps"
           ]
         }
       }
@@ -2029,7 +2033,9 @@
       "enum": [
         "euroset",
         "wechat",
-        "alipay"
+        "alipay",
+        "zotapay",
+        "qps"
       ]
     },
     "PaymentToolDetails": {
