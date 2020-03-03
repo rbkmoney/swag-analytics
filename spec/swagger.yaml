@@ -266,7 +266,7 @@ parameters:
     minLength: 1
   partyID:
     name: partyID
-    in: query
+    in: path
     description: Идентификатор пати
     required: true
     type: string
