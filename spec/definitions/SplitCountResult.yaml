@@ -1,8 +1,12 @@
 type: object
+required:
+  - currency
+  - statusOffsetCounts
+  - splitUnit
 properties:
   splitUnit:
     x-merge-obj:
-      - $ref: '#/parameters/splitUnit'
+      - $ref: '#/definitions/SplitUnit'
   currency:
     x-merge-obj:
       - $ref: '#/definitions/Currency'

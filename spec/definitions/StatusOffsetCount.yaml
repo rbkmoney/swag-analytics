@@ -1,4 +1,7 @@
 type: object
+required:
+  - status
+  - offsetCount
 properties:
   status:
     description: Статус платежа

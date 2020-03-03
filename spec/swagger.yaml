@@ -264,6 +264,14 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  partyID:
+    name: partyID
+    in: query
+    description: Идентификатор пати
+    required: true
+    type: string
+    maxLength: 40
+    minLength: 1
   reportType:
     name: reportType
     in: query
