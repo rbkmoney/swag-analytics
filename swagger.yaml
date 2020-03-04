@@ -223,6 +223,14 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  partyID:
+    name: partyID
+    in: path
+    description: Идентификатор пати
+    required: true
+    type: string
+    maxLength: 40
+    minLength: 1
   reportType:
     name: reportType
     in: query
@@ -307,7 +315,245 @@ tags:
     x-displayName: Отчеты
     description: |
       Один раз в отчетный период платформа автоматически подготавливает и размещает документы в формате XLSX с разбиением по магазину активной категории. Также, каждый документ будет подписан [квалифицированной ЭЦП](http://minsvyaz.ru/ru/appeals/faq/31/). Данная подпись является юридически значимой и позволяет полностью отказаться от бумажного документооборота.
+  - name: Analitics
+    x-displayName: Аналитика
+    description: |
+      Аналитические методы по статистике платежей
 paths:
+  '/analytics/payments-tool/{partyID}':
+    get:
+      description: Получение распределения использования платежных инструментов
+      tags:
+        - Analytics
+      operationId: getPaymentsToolDistribution
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Распределение использования платежных инструментов
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PaymentsToolDistributionResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/amount':
+    get:
+      description: Получение списка оборотов с группировкой по валютам
+      tags:
+        - Analytics
+      operationId: getPaymentsAmount
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Список оборотов с группировкой по валютам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/AmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/average':
+    get:
+      description: Получение среднего размера платежа с группировкой по валютам
+      tags:
+        - Analytics
+      operationId: getAveragePayment
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Средний размер платежа с группировкой по валютам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/AmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/count':
+    get:
+      description: Получение колличества платежей с группировкой по валютам
+      tags:
+        - Analytics
+      operationId: getPaymentsCount
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Средний колличества платежей с группировкой по валютам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/CountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/errors':
+    get:
+      description: Получение распределения ошибок
+      tags:
+        - Analytics
+      operationId: getPaymentsErrorDistribution
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Распределение ошибок
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PaymentsErrorsDistributionResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/split-amount':
+    get:
+      description: Получение списка оборотов с группировкой по валютам и разделенные по временным интервалам
+      tags:
+        - Analytics
+      operationId: getPaymentsSplitAmount
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+        - $ref: '#/parameters/splitUnit'
+      responses:
+        '200':
+          description: Список оборотов с группировкой по валютам и разделенные по временным интервалам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/SplitAmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/payments/{partyID}/split-count':
+    get:
+      description: 'Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам'
+      tags:
+        - Analytics
+      operationId: getPaymentsSplitCount
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+        - $ref: '#/parameters/splitUnit'
+      responses:
+        '200':
+          description: 'Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам'
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/SplitCountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
+  '/analytics/refunds/{partyID}/amount':
+    get:
+      description: Получение списка возвратов с группировкой по валютам
+      tags:
+        - Analytics
+      operationId: getRefundsAmount
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Список возвратов с группировкой по валютам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/AmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
   /invoices:
     get:
       description: Поиск инвойсов
@@ -892,6 +1138,26 @@ paths:
         '404':
           $ref: '#/responses/NotFound'
 definitions:
+  AmountResult:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - amount
+          - currency
+        properties:
+          amount:
+            description: |
+              Стоимость предлагаемых товаров или услуг, в минорных денежных
+              единицах, например в копейках в случае указания российских рублей в
+              качестве валюты.
+            type: integer
+            format: int64
+            minimum: 1
+          currency:
+            description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
+            type: string
+            pattern: '^[A-Z]{3}$'
   BankAccount:
     description: |
       Данные расчётного счёта в банковской организации, ведущей деятельность под
@@ -1017,6 +1283,23 @@ definitions:
       Для получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.
       Если токена нет, получена последняя часть данных.
     type: string
+  CountResult:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - count
+          - currency
+        properties:
+          count:
+            description: Общее количество операций
+            type: integer
+            format: int32
+            minimum: 0
+          currency:
+            description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
+            type: string
+            pattern: '^[A-Z]{3}$'
   CryptoCurrency:
     description: Тип криптовалюты
     type: string
@@ -1377,6 +1660,43 @@ definitions:
         type: string
         pattern: '^\+\d\*{1,10}\d{2,4}$'
         example: +7******0102
+  OffsetAmount:
+    type: object
+    required:
+      - amount
+      - offset
+    properties:
+      amount:
+        description: |
+          Стоимость предлагаемых товаров или услуг, в минорных денежных
+          единицах, например в копейках в случае указания российских рублей в
+          качестве валюты.
+        type: integer
+        format: int64
+        minimum: 1
+      offset:
+        description: Номер интервала в списке
+        type: integer
+        format: int32
+        minimum: 0
+  OffsetCount:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - count
+          - offset
+        properties:
+          count:
+            description: Общее количество операций
+            type: integer
+            format: int32
+            minimum: 0
+          offset:
+            description: Номер интервала в списке
+            type: integer
+            format: int32
+            minimum: 0
   Payer:
     type: object
     discriminator: payerType
@@ -1554,6 +1874,22 @@ definitions:
             $ref: '#/definitions/TransactionInfo'
           makeRecurrent:
             $ref: '#/definitions/PaymentMakeRecurrent'
+  PaymentsErrorsDistributionResult:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - error
+          - percents
+        properties:
+          error:
+            description: Тип ошибки
+            type: string
+          percents:
+            description: Относительное колличество ошибок в процентах
+            type: integer
+            format: int32
+            minimum: 0
   PaymentStatus:
     type: object
     required:
@@ -1571,6 +1907,22 @@ definitions:
           - failed
       error:
         $ref: '#/definitions/PaymentError'
+  PaymentsToolDistributionResult:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - name
+          - percents
+        properties:
+          name:
+            description: Название платежного средства
+            type: string
+          percents:
+            description: Колличество использования платежного инструмента в процентах
+            type: integer
+            format: int32
+            minimum: 0
   PaymentTerminalDetails:
     required:
       - provider
@@ -2039,6 +2391,86 @@ definitions:
             type: string
             format: uri
             maxLength: 1000
+  SplitAmountResult:
+    type: object
+    required:
+      - splitUnit
+      - currency
+      - offsetAmounts
+    properties:
+      splitUnit:
+        description: Единица времени сегмента разбиения
+        type: string
+        enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+          - year
+      currency:
+        description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
+        type: string
+        pattern: '^[A-Z]{3}$'
+      offsetAmounts:
+        type: array
+        items:
+          $ref: '#/definitions/OffsetAmount'
+  SplitCountResult:
+    type: object
+    required:
+      - currency
+      - statusOffsetCounts
+      - splitUnit
+    properties:
+      splitUnit:
+        description: Единица времени сегмента разбиения
+        type: string
+        enum:
+          - minute
+          - hour
+          - day
+          - week
+          - month
+          - year
+      currency:
+        description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
+        type: string
+        pattern: '^[A-Z]{3}$'
+      statusOffsetCounts:
+        type: array
+        items:
+          $ref: '#/definitions/StatusOffsetCount'
+  SplitUnit:
+    description: Единица времени сегмента разбиения
+    type: string
+    enum:
+      - minute
+      - hour
+      - day
+      - week
+      - month
+      - year
+  StatusOffsetCount:
+    type: object
+    required:
+      - status
+      - offsetCount
+    properties:
+      status:
+        description: Статус платежа
+        type: string
+        enum:
+          - pending
+          - processed
+          - captured
+          - cancelled
+          - refunded
+          - failed
+      offsetCount:
+        type: array
+        items:
+          $ref: '#/definitions/OffsetCount'
   SubError:
     description: |
       Детализация описания ошибки
