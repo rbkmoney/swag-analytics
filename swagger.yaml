@@ -320,6 +320,33 @@ tags:
     description: |
       Аналитические методы по статистике платежей
 paths:
+  '/analytics/balances/{partyID}/current':
+    get:
+      description: Получение текущего баланса по магазину
+      tags:
+        - Analytics
+      operationId: getCurrentBalances
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyID'
+        - $ref: '#/parameters/shopID'
+      responses:
+        '200':
+          description: Список оборотов с группировкой по валютам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/AmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
   '/analytics/payments-tool/{partyID}':
     get:
       description: Получение распределения использования платежных инструментов
