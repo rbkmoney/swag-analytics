@@ -56,7 +56,7 @@ NUMBER_COMMITS := $(shell git rev-list --count HEAD)
 JAVA_PKG_VERSION := 1.$(NUMBER_COMMITS)-$(COMMIT_HASH)
 
 ifdef BRANCH_NAME
-ifeq "$(findstring epic,$(BRANCH_NAME))" "epic"
+ifeq "$(findstring epic,$(BRANCH_NAME))" "epic"Invoice
 JAVA_PKG_VERSION := $(JAVA_PKG_VERSION)-epic
 endif
 endif
