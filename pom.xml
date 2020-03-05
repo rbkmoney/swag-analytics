@@ -14,7 +14,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>Messages</name>
+    <name>Analytics</name>
     <description>Generates jar artifact containing compiled swagger classes based on generated swagger yaml files
     </description>
 
