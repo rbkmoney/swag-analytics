@@ -320,7 +320,7 @@ tags:
     description: |
       Аналитические методы по статистике платежей
 paths:
-  '/analytics/balances/{partyID}/current':
+  /analytics/balances/current:
     get:
       description: Получение текущего баланса по магазину
       tags:
@@ -329,7 +329,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
       responses:
         '200':
@@ -347,7 +346,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments-tool/{partyID}':
+  /analytics/payments-tool:
     get:
       description: Получение распределения использования платежных инструментов
       tags:
@@ -356,7 +355,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -376,7 +374,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/amount':
+  /analytics/payments/amount:
     get:
       description: Получение списка оборотов с группировкой по валютам
       tags:
@@ -386,7 +384,6 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopID'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -405,7 +402,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/average':
+  /analytics/payments/average:
     get:
       description: Получение среднего размера платежа с группировкой по валютам
       tags:
@@ -414,7 +411,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -434,7 +430,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/count':
+  /analytics/payments/count:
     get:
       description: Получение колличества платежей с группировкой по валютам
       tags:
@@ -443,7 +439,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -463,7 +458,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/errors':
+  /analytics/payments/errors:
     get:
       description: Получение распределения ошибок
       tags:
@@ -472,7 +467,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -492,7 +486,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/split-amount':
+  /analytics/payments/split-amount:
     get:
       description: Получение списка оборотов с группировкой по валютам и разделенные по временным интервалам
       tags:
@@ -501,7 +495,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -522,7 +515,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/payments/{partyID}/split-count':
+  /analytics/payments/split-count:
     get:
       description: 'Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам'
       tags:
@@ -531,7 +524,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
@@ -552,7 +544,7 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
-  '/analytics/refunds/{partyID}/amount':
+  /analytics/refunds/amount:
     get:
       description: Получение списка возвратов с группировкой по валютам
       tags:
@@ -561,7 +553,6 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/partyID'
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'

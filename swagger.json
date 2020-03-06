@@ -287,7 +287,7 @@
     }
   ],
   "paths": {
-    "/analytics/balances/{partyID}/current": {
+    "/analytics/balances/current": {
       "get": {
         "description": "Получение текущего баланса по магазину",
         "tags": [
@@ -300,9 +300,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -335,7 +332,7 @@
         }
       }
     },
-    "/analytics/payments-tool/{partyID}": {
+    "/analytics/payments-tool": {
       "get": {
         "description": "Получение распределения использования платежных инструментов",
         "tags": [
@@ -348,9 +345,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -389,7 +383,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/amount": {
+    "/analytics/payments/amount": {
       "get": {
         "description": "Получение списка оборотов с группировкой по валютам",
         "tags": [
@@ -405,9 +399,6 @@
           },
           {
             "$ref": "#/parameters/shopID"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -443,7 +434,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/average": {
+    "/analytics/payments/average": {
       "get": {
         "description": "Получение среднего размера платежа с группировкой по валютам",
         "tags": [
@@ -456,9 +447,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -497,7 +485,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/count": {
+    "/analytics/payments/count": {
       "get": {
         "description": "Получение колличества платежей с группировкой по валютам",
         "tags": [
@@ -510,9 +498,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -551,7 +536,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/errors": {
+    "/analytics/payments/errors": {
       "get": {
         "description": "Получение распределения ошибок",
         "tags": [
@@ -564,9 +549,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -605,7 +587,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/split-amount": {
+    "/analytics/payments/split-amount": {
       "get": {
         "description": "Получение списка оборотов с группировкой по валютам и разделенные по временным интервалам",
         "tags": [
@@ -618,9 +600,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -662,7 +641,7 @@
         }
       }
     },
-    "/analytics/payments/{partyID}/split-count": {
+    "/analytics/payments/split-count": {
       "get": {
         "description": "Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам",
         "tags": [
@@ -675,9 +654,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
@@ -719,7 +695,7 @@
         }
       }
     },
-    "/analytics/refunds/{partyID}/amount": {
+    "/analytics/refunds/amount": {
       "get": {
         "description": "Получение списка возвратов с группировкой по валютам",
         "tags": [
@@ -732,9 +708,6 @@
           },
           {
             "$ref": "#/parameters/deadline"
-          },
-          {
-            "$ref": "#/parameters/partyID"
           },
           {
             "$ref": "#/parameters/shopID"
