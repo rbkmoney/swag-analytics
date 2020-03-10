@@ -14,7 +14,6 @@ get:
       description: Средний размер платежа с группировкой по валютам
       schema:
         type: object
-        name: AmountResultResponse
         properties:
           result:
             type: array

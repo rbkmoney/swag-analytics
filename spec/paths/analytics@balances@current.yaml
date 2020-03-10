@@ -12,7 +12,6 @@ get:
       description: Список оборотов с группировкой по валютам
       schema:
         type: object
-        name: AmountResultResponse
         properties:
           result:
             type: array

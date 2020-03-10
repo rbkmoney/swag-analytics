@@ -14,7 +14,6 @@ get:
       description: Распределение ошибок
       schema:
         type: object
-        name: PaymentsErrorsDistributionResultResponse
         properties:
           result:
             type: array

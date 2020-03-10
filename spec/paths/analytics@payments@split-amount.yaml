@@ -15,7 +15,6 @@ get:
       description: Список оборотов с группировкой по валютам и разделенные по временным интервалам
       schema:
         type: object
-        name: PaymentsErrorsDistributionResultResponse
         properties:
           result:
             type: array

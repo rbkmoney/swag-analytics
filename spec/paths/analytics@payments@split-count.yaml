@@ -15,7 +15,6 @@ get:
       description: Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам
       schema:
         type: object
-        name: SplitCountResultResponse
         properties:
           result:
             type: array

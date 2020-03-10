@@ -14,7 +14,6 @@ get:
       description: Распределение использования платежных инструментов
       schema:
         type: object
-        name: PaymentsToolDistributionResultResponse
         properties:
           result:
             type: array
