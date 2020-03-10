@@ -223,6 +223,14 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  shopIDs:
+    name: shopIDs
+    in: query
+    description: Идентификаторы магазинов
+    required: false
+    type: array
+    items:
+      type: string
   partyID:
     name: partyID
     in: path
@@ -329,7 +337,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
       responses:
         '200':
           description: Список оборотов с группировкой по валютам
@@ -355,7 +363,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -383,7 +391,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -411,7 +419,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -439,7 +447,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -467,7 +475,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -495,7 +503,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -524,7 +532,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -553,7 +561,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
-        - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -1312,7 +1320,7 @@ definitions:
           count:
             description: Общее количество операций
             type: integer
-            format: int32
+            format: int64
             minimum: 0
           currency:
             description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
@@ -1695,7 +1703,7 @@ definitions:
       offset:
         description: Номер интервала в списке
         type: integer
-        format: int32
+        format: int64
         minimum: 0
   OffsetCount:
     type: object
@@ -1708,12 +1716,12 @@ definitions:
           count:
             description: Общее количество операций
             type: integer
-            format: int32
+            format: int64
             minimum: 0
           offset:
             description: Номер интервала в списке
             type: integer
-            format: int32
+            format: int64
             minimum: 0
   Payer:
     type: object
@@ -1906,7 +1914,7 @@ definitions:
           percents:
             description: Относительное колличество ошибок в процентах
             type: integer
-            format: int32
+            format: int64
             minimum: 0
   PaymentStatus:
     type: object

@@ -226,6 +226,16 @@
       "maxLength": 40,
       "minLength": 1
     },
+    "shopIDs": {
+      "name": "shopIDs",
+      "in": "query",
+      "description": "Идентификаторы магазинов",
+      "required": false,
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
     "partyID": {
       "name": "partyID",
       "in": "path",
@@ -302,7 +312,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           }
         ],
         "responses": {
@@ -347,7 +357,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -398,7 +408,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -449,7 +459,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -500,7 +510,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -551,7 +561,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -602,7 +612,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -656,7 +666,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -710,7 +720,7 @@
             "$ref": "#/parameters/deadline"
           },
           {
-            "$ref": "#/parameters/shopID"
+            "$ref": "#/parameters/shopIDs"
           },
           {
             "$ref": "#/parameters/fromTime"
@@ -1777,7 +1787,7 @@
             "count": {
               "description": "Общее количество операций",
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             },
             "currency": {
@@ -2273,7 +2283,7 @@
         "offset": {
           "description": "Номер интервала в списке",
           "type": "integer",
-          "format": "int32",
+          "format": "int64",
           "minimum": 0
         }
       }
@@ -2291,13 +2301,13 @@
             "count": {
               "description": "Общее количество операций",
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             },
             "offset": {
               "description": "Номер интервала в списке",
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             }
           }
@@ -2573,7 +2583,7 @@
             "percents": {
               "description": "Относительное колличество ошибок в процентах",
               "type": "integer",
-              "format": "int32",
+              "format": "int64",
               "minimum": 0
             }
           }
