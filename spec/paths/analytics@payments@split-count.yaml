@@ -6,7 +6,7 @@ get:
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
-    - $ref: '#/parameters/shopID'
+    - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - $ref: '#/parameters/splitUnit'
@@ -15,6 +15,7 @@ get:
       description: Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам
       schema:
         type: object
+        name: SplitCountResultResponse
         properties:
           result:
             type: array

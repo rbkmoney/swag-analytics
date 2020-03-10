@@ -6,12 +6,13 @@ get:
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
-    - $ref: '#/parameters/shopID'
+    - $ref: '#/parameters/shopIDs'
   responses:
     '200':
       description: Список оборотов с группировкой по валютам
       schema:
         type: object
+        name: AmountResultResponse
         properties:
           result:
             type: array

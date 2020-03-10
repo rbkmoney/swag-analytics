@@ -6,7 +6,7 @@ get:
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
-    - $ref: '#/parameters/shopID'
+    - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
   responses:
@@ -14,6 +14,7 @@ get:
       description: Распределение использования платежных инструментов
       schema:
         type: object
+        name: PaymentsToolDistributionResultResponse
         properties:
           result:
             type: array

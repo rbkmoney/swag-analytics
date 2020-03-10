@@ -6,7 +6,7 @@ get:
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
-    - $ref: '#/parameters/shopID'
+    - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - $ref: '#/parameters/splitUnit'
@@ -15,6 +15,7 @@ get:
       description: Список оборотов с группировкой по валютам и разделенные по временным интервалам
       schema:
         type: object
+        name: PaymentsErrorsDistributionResultResponse
         properties:
           result:
             type: array
