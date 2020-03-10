@@ -267,7 +267,7 @@ parameters:
   shopIDs:
     name: shopIDs
     in: query
-    description: Идентификаторы магазинов, исключаемых из поиска
+    description: Идентификаторы магазинов
     required: false
     type: array
     items:
