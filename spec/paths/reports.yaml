@@ -18,6 +18,7 @@ post:
       enum:
         - paymentRegistry
     - $ref: '#/parameters/shopID'
+    - $ref: '#/parameters/shopIDs'
   responses:
     '201':
       description: Отчет создан
