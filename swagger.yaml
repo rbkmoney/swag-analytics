@@ -590,6 +590,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDQuery'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -671,6 +672,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDQuery'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -867,6 +869,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDQuery'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -935,6 +938,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDQuery'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -1074,6 +1078,7 @@ paths:
               - provisionOfService
               - paymentRegistry
         - $ref: '#/parameters/shopID'
+        - $ref: '#/parameters/shopIDs'
         - name: continuationToken
           in: query
           required: false
