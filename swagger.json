@@ -12,7 +12,7 @@
     }
   },
   "host": "api.rbk.money",
-  "basePath": "/analytics/v1",
+  "basePath": "/lk/v1",
   "schemes": [
     "https"
   ],
