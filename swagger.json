@@ -2597,8 +2597,8 @@
             },
             "percents": {
               "description": "Относительное колличество ошибок в процентах",
-              "type": "integer",
-              "format": "int64",
+              "type": "number",
+              "format": "double",
               "minimum": 0
             }
           }
@@ -2644,8 +2644,8 @@
             },
             "percents": {
               "description": "Колличество использования платежного инструмента в процентах",
-              "type": "integer",
-              "format": "int32",
+              "type": "number",
+              "format": "double",
               "minimum": 0
             }
           }
