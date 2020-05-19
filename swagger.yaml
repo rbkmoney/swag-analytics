@@ -2183,6 +2183,7 @@ definitions:
           - createdAt
           - amount
           - currency
+          - shopID
         properties:
           id:
             description: Идентификатор возврата
@@ -2203,6 +2204,9 @@ definitions:
             pattern: '^[A-Z]{3}$'
           reason:
             description: Причина осуществления возврата
+            type: string
+          shopID:
+            description: Идентификатор магазина
             type: string
       - $ref: '#/definitions/RefundStatus'
   RefundSearchResult:

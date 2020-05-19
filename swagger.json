@@ -2984,7 +2984,8 @@
             "id",
             "createdAt",
             "amount",
-            "currency"
+            "currency",
+            "shopID"
           ],
           "properties": {
             "id": {
@@ -3009,6 +3010,10 @@
             },
             "reason": {
               "description": "Причина осуществления возврата",
+              "type": "string"
+            },
+            "shopID": {
+              "description": "Идентификатор магазина",
               "type": "string"
             }
           }
