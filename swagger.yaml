@@ -552,6 +552,34 @@ paths:
           $ref: '#/responses/Unauthorized'
         '404':
           $ref: '#/responses/NotFound'
+  /analytics/payments/sub-errors:
+    get:
+      description: Получение распределения ошибок с подошибками
+      tags:
+        - Analytics
+      operationId: getPaymentsSubErrorDistribution
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/fromTime'
+        - $ref: '#/parameters/toTime'
+      responses:
+        '200':
+          description: Распределение ошибок с подошибками
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/PaymentsSubErrorsDistributionResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
   /analytics/refunds/amount:
     get:
       description: Получение списка возвратов с группировкой по валютам
@@ -1916,6 +1944,22 @@ definitions:
           error:
             description: Тип ошибки
             type: string
+          percents:
+            description: Относительное колличество ошибок в процентах
+            type: number
+            format: double
+            minimum: 0
+  PaymentsSubErrorsDistributionResult:
+    type: object
+    allOf:
+      - type: object
+        required:
+          - error
+          - percents
+        properties:
+          error:
+            description: Тип ошибки
+            $ref: '#/definitions/SubError'
           percents:
             description: Относительное колличество ошибок в процентах
             type: number
