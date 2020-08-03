@@ -807,6 +807,154 @@
         }
       }
     },
+    "/chargebacks": {
+      "get": {
+        "description": "Поиск чарджбэков",
+        "tags": [
+          "Search"
+        ],
+        "operationId": "searchChardgebacks",
+        "parameters": [
+          {
+            "$ref": "#/parameters/requestID"
+          },
+          {
+            "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/shopIDQuery"
+          },
+          {
+            "$ref": "#/parameters/shopIDs"
+          },
+          {
+            "$ref": "#/parameters/fromTime"
+          },
+          {
+            "$ref": "#/parameters/toTime"
+          },
+          {
+            "$ref": "#/parameters/limit"
+          },
+          {
+            "$ref": "#/parameters/offset"
+          },
+          {
+            "name": "invoiceID",
+            "in": "query",
+            "description": "Идентификатор инвойса",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
+            "name": "paymentID",
+            "in": "query",
+            "description": "Идентификатор платежа",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
+            "name": "chargebackID",
+            "in": "query",
+            "description": "Идентификатор чарджбэка",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
+            "name": "chargebackStatuses",
+            "in": "query",
+            "description": "Статусы чарджбэков",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "accepted",
+                "rejected",
+                "cancelled"
+              ]
+            }
+          },
+          {
+            "name": "chargebackStages",
+            "in": "query",
+            "description": "Этапы чарджбэков",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "chargeback",
+                "pre_arbitration",
+                "arbitration"
+              ]
+            }
+          },
+          {
+            "name": "chargebackCategories",
+            "in": "query",
+            "description": "Категории чарджбэков",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "fraud",
+                "dispute",
+                "authorisation",
+                "processing_error"
+              ]
+            }
+          },
+          {
+            "name": "continuationToken",
+            "in": "query",
+            "required": false,
+            "description": "Токен, сигнализирующий о том, что в ответе передана только часть данных.\nДля получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.\nЕсли токена нет, получена последняя часть данных.\n",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Найденные чарджбэки",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "totalCount": {
+                  "type": "integer"
+                },
+                "continuationToken": {
+                  "description": "Токен, сигнализирующий о том, что в ответе передана только часть данных.\nДля получения следующей части нужно повторно обратиться к сервису, указав тот же набор условий и полученый токен.\nЕсли токена нет, получена последняя часть данных.\n",
+                  "type": "string"
+                },
+                "result": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/Chargeback"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/responses/DefaultLogicError"
+          },
+          "401": {
+            "$ref": "#/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/responses/NotFound"
+          }
+        }
+      }
+    },
     "/invoices": {
       "get": {
         "description": "Поиск инвойсов",
@@ -1833,6 +1981,157 @@
         "samsungpay"
       ]
     },
+    "Chargeback": {
+      "type": "object",
+      "required": [
+        "invoiceId",
+        "paymentId",
+        "chargebackId",
+        "shopID",
+        "createdAt",
+        "bodyAmount",
+        "bodyCurrency",
+        "levyAmount",
+        "levyCurrency"
+      ],
+      "properties": {
+        "invoiceId": {
+          "description": "Идентификатор инвойса",
+          "type": "string"
+        },
+        "paymentId": {
+          "description": "Идентификатор платежа",
+          "type": "string"
+        },
+        "chargebackId": {
+          "description": "Идентификатор чарджбэка",
+          "type": "string"
+        },
+        "externalId": {
+          "description": "Внешний идентификатор",
+          "type": "string"
+        },
+        "shopID": {
+          "description": "Идентификатор магазина",
+          "type": "string"
+        },
+        "createdAt": {
+          "description": "Дата и время создания",
+          "type": "string",
+          "format": "date-time"
+        },
+        "levyAmount": {
+          "description": "Сумма списываемых средств у чарджбека",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1
+        },
+        "levyCurrency": {
+          "description": "Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).",
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "bodyAmount": {
+          "description": "Сумма чарджбэка",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1
+        },
+        "bodyCurrency": {
+          "description": "Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).",
+          "type": "string",
+          "pattern": "^[A-Z]{3}$"
+        },
+        "fee": {
+          "description": "Комиссия системы, в минорных денежных единицах",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0
+        },
+        "providerFee": {
+          "description": "Комиссия провайдера, в минорных денежных единицах",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0
+        },
+        "externalFee": {
+          "description": "Комиссия внешней системы системы, в минорных денежных единицах",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0
+        },
+        "status": {
+          "description": "Статус чарджбэка",
+          "type": "string",
+          "enum": [
+            "pending",
+            "accepted",
+            "rejected",
+            "cancelled"
+          ]
+        },
+        "stage": {
+          "description": "Этап прохождения чарджбэка",
+          "type": "string",
+          "enum": [
+            "chargeback",
+            "pre_arbitration",
+            "arbitration"
+          ]
+        },
+        "chargebackReason": {
+          "$ref": "#/definitions/ChargebackReason"
+        },
+        "content": {
+          "$ref": "#/definitions/Content"
+        }
+      }
+    },
+    "ChargebackCategory": {
+      "description": "Категория чарджбэка",
+      "type": "string",
+      "enum": [
+        "fraud",
+        "dispute",
+        "authorisation",
+        "processing_error"
+      ]
+    },
+    "ChargebackReason": {
+      "description": "Данные о причине чарджбэка",
+      "type": "object",
+      "required": [
+        "category"
+      ],
+      "properties": {
+        "code": {
+          "description": "Код категории",
+          "type": "string"
+        },
+        "category": {
+          "$ref": "#/definitions/ChargebackCategory"
+        }
+      }
+    },
+    "ChargebackStage": {
+      "description": "Этап прохождения чарджбэка",
+      "type": "string",
+      "enum": [
+        "chargeback",
+        "pre_arbitration",
+        "arbitration"
+      ]
+    },
+    "ChargebackStatus": {
+      "description": "Статус чарджбэка",
+      "type": "string",
+      "enum": [
+        "pending",
+        "accepted",
+        "rejected",
+        "cancelled"
+      ]
+    },
     "ClientInfo": {
       "description": "Данные клиентского устройства плательщика",
       "type": "object",
@@ -1867,6 +2166,20 @@
           "description": "Номер мобильного телефона с международным префиксом согласно\n[E.164](https://en.wikipedia.org/wiki/E.164).\n",
           "type": "string",
           "format": "^\\+\\d{4,15}$"
+        }
+      }
+    },
+    "Content": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "Тип данных",
+          "type": "string"
+        },
+        "category": {
+          "description": "Данные",
+          "type": "string",
+          "format": "byte"
         }
       }
     },
