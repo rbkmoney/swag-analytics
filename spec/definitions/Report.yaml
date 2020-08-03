@@ -36,6 +36,7 @@ properties:
     type: string
     enum:
       - provisionOfService
+      - customProvisionOfService
       - paymentRegistry
   partyID:
     description: Идентификатор участника

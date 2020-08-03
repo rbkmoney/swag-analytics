@@ -64,6 +64,7 @@ get:
         type: string
         enum:
           - provisionOfService
+          - customProvisionOfService
           - paymentRegistry
     - $ref: '#/parameters/shopID'
     - $ref: '#/parameters/shopIDs'
