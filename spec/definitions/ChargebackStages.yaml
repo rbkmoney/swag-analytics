@@ -1,0 +1,4 @@
+description: Этап прохождения чарджбэка
+type: array
+items:
+  - $ref: '#/definitions/ChargebackStage'
