@@ -33,27 +33,32 @@ get:
       type: string
       maxLength: 40
       minLength: 1
-    - name: chargebackStatuses
-      in: query
-      description: Статусы чарджбэков
-      required: false
-      type: array
-      items:
-        - $ref: '#/definitions/ChargebackStatus'
-    - name: chargebackStages
-      in: query
-      description: Этапы чарджбэков
-      required: false
-      type: array
-      items:
-        - $ref: '#/definitions/ChargebackStages'
-    - name: chargebackCategories
-      in: query
-      description: Категории чарджбэков
-      required: false
-      type: array
-      items:
-        - $ref: '#/definitions/ChargebackCategories'
+#    - name: chargebackStatuses
+#      in: query
+#      description: Статусы чарджбэков
+#      required: false
+#      type: array
+#      items:
+#        type: string
+#        enum:
+#          - pending
+#          - accepted
+#          - rejected
+#          - cancelled
+#    - name: chargebackStages
+#      in: query
+#      description: Этапы чарджбэков
+#      required: false
+#      type: array
+#      items:
+#        $ref: '#/definitions/ChargebackStage'
+#    - name: chargebackCategories
+#      in: query
+#      description: Категории чарджбэков
+#      required: false
+#      type: array
+#      items:
+#        $ref: '#/definitions/ChargebackCategory'
     - x-merge-obj:
       - name: continuationToken
         in: query
