@@ -61,14 +61,14 @@ properties:
     format: int64
     minimum: 0
   status:
-    - $ref: '#/definitions/ChargebackStatus'
+    x-merge-obj:
+      - $ref: '#/definitions/ChargebackStatus'
   stage:
-    - $ref: '#/definitions/ChargebackStage'
+    x-merge-obj:
+      - $ref: '#/definitions/ChargebackStage'
   chargebackReason:
-    x-merge-obj:
-      - $ref: '#/definitions/ChargebackReason'
+    $ref: '#/definitions/ChargebackReason'
   content:
-    x-merge-obj:
-      - $ref: '#/definitions/Content'
+    $ref: '#/definitions/Content'
 
 

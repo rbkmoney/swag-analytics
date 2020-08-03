@@ -7,4 +7,4 @@ properties:
     description: Код категории
     type: string
   category:
-    - $ref: '#/definitions/ChargebackCategory'
+    $ref: '#/definitions/ChargebackCategory'
