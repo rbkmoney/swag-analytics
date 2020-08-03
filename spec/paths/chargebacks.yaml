@@ -45,25 +45,29 @@ get:
           - accepted
           - rejected
           - cancelled
-    - x-merge-obj:
-      - name: chargebackStages
-        in: query
-        required: false
-      - $ref: '#/definitions/ChargebackStages'
-#    - name: chargebackStages
-#      in: query
-#      description: Этапы чарджбэков
-#      required: false
-#      type: array
-#      items:
-#        $ref: '#/definitions/ChargebackStage'
-#    - name: chargebackCategories
-#      in: query
-#      description: Категории чарджбэков
-#      required: false
-#      type: array
-#      items:
-#        $ref: '#/definitions/ChargebackCategory'
+    - name: chargebackStages
+      in: query
+      description: Этапы чарджбэков
+      required: false
+      type: array
+      items:
+        type: string
+        enum:
+          - chargeback
+          - pre_arbitration
+          - arbitration
+    - name: chargebackCategories
+      in: query
+      description: Категории чарджбэков
+      required: false
+      type: array
+      items:
+        type: string
+        enum:
+          - fraud
+          - dispute
+          - authorisation
+          - processing_error
     - x-merge-obj:
       - name: continuationToken
         in: query
