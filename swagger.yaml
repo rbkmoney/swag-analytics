@@ -1208,6 +1208,7 @@ paths:
             enum:
               - provisionOfService
               - paymentRegistry
+              - paymentRegistryByPayout
         - $ref: '#/parameters/shopID'
         - $ref: '#/parameters/shopIDs'
         - name: continuationToken
@@ -2585,6 +2586,7 @@ definitions:
         enum:
           - provisionOfService
           - paymentRegistry
+          - paymentRegistryByPayout
       partyID:
         description: Идентификатор участника
         type: string
