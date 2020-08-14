@@ -613,7 +613,7 @@ paths:
       description: Поиск чарджбэков
       tags:
         - Search
-      operationId: searchChardgebacks
+      operationId: searchChargebacks
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
@@ -1583,7 +1583,7 @@ definitions:
       type:
         description: Тип данных
         type: string
-      category:
+      data:
         description: Данные
         type: string
         format: byte

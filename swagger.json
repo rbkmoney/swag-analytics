@@ -813,7 +813,7 @@
         "tags": [
           "Search"
         ],
-        "operationId": "searchChardgebacks",
+        "operationId": "searchChargebacks",
         "parameters": [
           {
             "$ref": "#/parameters/requestID"
@@ -2177,7 +2177,7 @@
           "description": "Тип данных",
           "type": "string"
         },
-        "category": {
+        "data": {
           "description": "Данные",
           "type": "string",
           "format": "byte"
