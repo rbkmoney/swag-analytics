@@ -231,6 +231,14 @@ parameters:
     type: array
     items:
       type: string
+  excludeShopIDs:
+    name: excludeShopIDs
+    in: query
+    description: Идентификаторы магазинов не включаемые в запрос
+    required: false
+    type: array
+    items:
+      type: string
   partyID:
     name: partyID
     in: path
@@ -338,6 +346,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
       responses:
         '200':
           description: Список оборотов с группировкой по валютам
@@ -364,6 +373,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -392,6 +402,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -420,6 +431,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -448,6 +460,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -476,6 +489,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -504,6 +518,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -533,6 +548,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -562,6 +578,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -590,6 +607,7 @@ paths:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
