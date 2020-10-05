@@ -760,6 +760,13 @@ paths:
           type: string
           maxLength: 40
           minLength: 1
+        - name: externalID
+          in: query
+          description: Внешний идентификатор
+          required: false
+          type: string
+          maxLength: 40
+          minLength: 1
         - name: invoiceAmountFrom
           in: query
           description: Минимальная сумма инвойса
@@ -874,6 +881,13 @@ paths:
         - name: paymentID
           in: query
           description: Идентификатор платежа
+          required: false
+          type: string
+          maxLength: 40
+          minLength: 1
+        - name: externalID
+          in: query
+          description: Внешний идентификатор
           required: false
           type: string
           maxLength: 40
@@ -1109,6 +1123,13 @@ paths:
         - name: refundID
           in: query
           description: Идентификатор возврата
+          required: false
+          type: string
+          maxLength: 40
+          minLength: 1
+        - name: externalID
+          in: query
+          description: Внешний идентификатор
           required: false
           type: string
           maxLength: 40
@@ -1846,6 +1867,9 @@ definitions:
           id:
             description: Идентификатор инвойса
             type: string
+          externalID:
+            description: Внешний идентификатор
+            type: string
           shopID:
             description: Идентификатор магазина
             type: string
@@ -2159,6 +2183,9 @@ definitions:
             type: string
           invoiceID:
             description: 'Идентификатор инвойса, в рамках которого был создан платеж'
+            type: string
+          externalID:
+            description: Внешний идентификатор
             type: string
           shopID:
             description: 'Идентификатор магазина, в рамках которого был создан платеж'
@@ -2500,6 +2527,9 @@ definitions:
         properties:
           id:
             description: Идентификатор возврата
+            type: string
+          externalID:
+            description: Внешний идентификатор
             type: string
           createdAt:
             description: Дата и время осуществления

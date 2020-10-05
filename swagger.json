@@ -1047,6 +1047,15 @@
             "minLength": 1
           },
           {
+            "name": "externalID",
+            "in": "query",
+            "description": "Внешний идентификатор",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
             "name": "invoiceAmountFrom",
             "in": "query",
             "description": "Минимальная сумма инвойса",
@@ -1206,6 +1215,15 @@
             "name": "paymentID",
             "in": "query",
             "description": "Идентификатор платежа",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
+            "name": "externalID",
+            "in": "query",
+            "description": "Внешний идентификатор",
             "required": false,
             "type": "string",
             "maxLength": 40,
@@ -1537,6 +1555,15 @@
             "name": "refundID",
             "in": "query",
             "description": "Идентификатор возврата",
+            "required": false,
+            "type": "string",
+            "maxLength": 40,
+            "minLength": 1
+          },
+          {
+            "name": "externalID",
+            "in": "query",
+            "description": "Внешний идентификатор",
             "required": false,
             "type": "string",
             "maxLength": 40,
@@ -2539,6 +2566,10 @@
               "description": "Идентификатор инвойса",
               "type": "string"
             },
+            "externalID": {
+              "description": "Внешний идентификатор",
+              "type": "string"
+            },
             "shopID": {
               "description": "Идентификатор магазина",
               "type": "string"
@@ -2963,6 +2994,10 @@
             },
             "invoiceID": {
               "description": "Идентификатор инвойса, в рамках которого был создан платеж",
+              "type": "string"
+            },
+            "externalID": {
+              "description": "Внешний идентификатор",
               "type": "string"
             },
             "shopID": {
@@ -3453,6 +3488,10 @@
           "properties": {
             "id": {
               "description": "Идентификатор возврата",
+              "type": "string"
+            },
+            "externalID": {
+              "description": "Внешний идентификатор",
               "type": "string"
             },
             "createdAt": {
