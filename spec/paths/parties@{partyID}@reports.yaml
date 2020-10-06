@@ -4,10 +4,12 @@ post:
     времени
   tags:
     - Reports
-  operationId: createReport
+  operationId: createReportForParty
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
+    - $ref: '#/parameters/partyIDPath'
+    - $ref: '#/parameters/shopIDQuery'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - name: reportType
@@ -17,7 +19,6 @@ post:
       type: string
       enum:
         - paymentRegistry
-    - $ref: '#/parameters/shopIDQuery'
   responses:
     '201':
       description: Отчет создан
@@ -49,10 +50,13 @@ get:
   description: Получить список отчетов по данному магазину за период
   tags:
     - Reports
-  operationId: searchReports
+  operationId: searchReportsForParties
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
+    - $ref: '#/parameters/partyIDPath'
+    - $ref: '#/parameters/shopIDQuery'
+    - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/fromTime'
     - $ref: '#/parameters/toTime'
     - name: reportTypes
@@ -66,8 +70,6 @@ get:
           - provisionOfService
           - paymentRegistry
           - paymentRegistryByPayout
-    - $ref: '#/parameters/shopIDQuery'
-    - $ref: '#/parameters/shopIDs'
     - x-merge-obj:
       - name: continuationToken
         in: query

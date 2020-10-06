@@ -1,0 +1,27 @@
+get:
+  description: Получение текущего баланса по магазину
+  tags:
+    - Analytics
+  operationId: getCurrentBalancesForParty
+  parameters:
+    - $ref: '#/parameters/requestID'
+    - $ref: '#/parameters/deadline'
+    - $ref: '#/parameters/partyIDPath'
+    - $ref: '#/parameters/shopIDs'
+    - $ref: '#/parameters/excludeShopIDs'
+  responses:
+    '200':
+      description: Список оборотов с группировкой по валютам
+      schema:
+        type: object
+        properties:
+          result:
+            type: array
+            items:
+              $ref: '#/definitions/AmountResult'
+    '404':
+      $ref: '#/responses/NotFound'
+    '401':
+      $ref: '#/responses/Unauthorized'
+    '400':
+      $ref: '#/responses/DefaultLogicError'
