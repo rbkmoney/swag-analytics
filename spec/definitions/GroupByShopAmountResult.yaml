@@ -1,18 +1,8 @@
+description: |
+  Сгруппированый по магазинам список текущих балансов
 type: object
-allOf:
-  - type: object
-    required:
-      - amount
-      - currency
-    properties:
-      amount:
-        description: |
-          Стоимость предлагаемых товаров или услуг, в минорных денежных
-          единицах, например в копейках в случае указания российских рублей в
-          качестве валюты.
-        type: integer
-        format: int64
-        minimum: 1
-      currency:
-        x-merge-obj:
-          - $ref: '#/definitions/Currency'
+properties:
+  groupBySHopResults:
+    type: array
+    items:
+      $ref: '#/definitions/ShopAmountResult'

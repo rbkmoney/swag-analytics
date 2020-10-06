@@ -1,5 +1,5 @@
 get:
-  description: Получение текущего баланса по магазину
+  description: Получение текущего баланса с группировкой по магазинам
   tags:
     - Analytics
   operationId: getCurrentBalancesGroupByShop
@@ -10,14 +10,14 @@ get:
     - $ref: '#/parameters/excludeShopIDs'
   responses:
     '200':
-      description: Список оборотов с группировкой по валютам
+      description: Список балансов с группировкой по магазинам
       schema:
         type: object
         properties:
           result:
             type: array
             items:
-              $ref: '#/definitions/AmountResult'
+              $ref: '#/definitions/GroupByShopAmountResult'
     '404':
       $ref: '#/responses/NotFound'
     '401':
