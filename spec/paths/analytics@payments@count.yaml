@@ -1,5 +1,5 @@
 get:
-  description: Получение колличества платежей с группировкой по валютам
+  description: Получение количества платежей с группировкой по валютам
   tags:
     - Analytics
   operationId: getPaymentsCount
@@ -13,7 +13,7 @@ get:
     - $ref: '#/parameters/toTime'
   responses:
     '200':
-      description: Средний колличества платежей с группировкой по валютам
+      description: Среднее количество платежей с группировкой по валютам
       schema:
         type: object
         properties:
