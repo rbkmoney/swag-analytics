@@ -304,6 +304,15 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  shopEnvironment:
+    name: shopEnvironment
+    in: query
+    description: Тип магазина
+    required: false
+    type: string
+    enum:
+      - prod
+      - test
 tags:
   - name: Search
     x-displayName: Поиск
