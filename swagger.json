@@ -88,6 +88,15 @@
       "maxLength": 40,
       "minLength": 1
     },
+    "partyIDQuery": {
+      "name": "partyID",
+      "in": "query",
+      "description": "Уникальный идентификатор участника в рамках платформы",
+      "required": false,
+      "type": "string",
+      "maxLength": 40,
+      "minLength": 1
+    },
     "paymentID": {
       "name": "paymentID",
       "in": "path",
@@ -217,15 +226,6 @@
       "maxLength": 40,
       "minLength": 1
     },
-    "shopID": {
-      "name": "shopID",
-      "in": "query",
-      "description": "Идентификатор магазина",
-      "required": false,
-      "type": "string",
-      "maxLength": 40,
-      "minLength": 1
-    },
     "shopIDs": {
       "name": "shopIDs",
       "in": "query",
@@ -245,15 +245,6 @@
       "items": {
         "type": "string"
       }
-    },
-    "partyID": {
-      "name": "partyID",
-      "in": "path",
-      "description": "Идентификатор пати",
-      "required": true,
-      "type": "string",
-      "maxLength": 40,
-      "minLength": 1
     },
     "reportType": {
       "name": "reportType",
@@ -293,7 +284,7 @@
     {
       "name": "Error Codes",
       "x-displayName": "Коды ошибок",
-      "description": "\n## Ошибки бизнес-логики\nВсе ошибки бизнес-логики имеют следуюший вид:\n\n  ```json\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n  ```\n\nВ поле `code` содержится тип ошибки, а в `message` - дополнительная информация по произошедшей ошибке.\nНа данный момент существуют следующие коды ошибок:\n\n  | Код                              | Описание                                                                                                                              |\n  | ---                              | --------                                                                                                                              |\n  | **invalidDeadline**              | Неверный формат времени.                                                                                                       |\n  | **invalidRequest**               | Прочие неверные данные запроса.                                                                                                       |\n\n## Общие ошибки\nОшибки возникающие при попытках совершения операций с незарегистрированными в системе объектами. Имеют вид\n\n  ```json\n  {\n      \"message\": \"string\"\n  }\n  ```\n\nВ поле `message` содержится информация по произошедшей ошибке. Например:\n\n  ```json\n  {\n      \"message\": \"Invalid token\"\n  }\n  ```\n\n## Ошибки обработки запросов\nВ процессе обработки запросов силами нашей платформы могут происходить различные непредвиденные ситуации. Об их появлении платформа сигнализирует по протоколу HTTP соответствующими [статусами][5xx], обозначающими ошибки сервера.\n\n  |  Код    |  Описание  |\n  | ------- | ---------- |\n  | **500** | В процессе обработки платформой запроса возникла непредвиденная ситуация. При получении подобного кода ответа мы рекомендуем обратиться в техническую поддержку. |\n  | **503** | Платформа временно недоступна и не готова обслуживать данный запрос. Запрос гарантированно не выполнен, при получении подобного кода ответа попробуйте выполнить его позднее, когда доступность платформы будет восстановлена. |\n  | **504** | Платформа превысила допустимое время обработки запроса, результат запроса не определён. Попробуйте отправить запрос повторно или выяснить результат выполнения исходного запроса, если повторное исполнение запроса нежелательно. |\n\n[5xx]: https://tools.ietf.org/html/rfc7231#section-6.6\n\nЕсли вы получили ошибку, которой нет в данном описании, обратитесь в техническую поддержку.\n"
+      "description": "\n## Ошибки бизнес-логики\nВсе ошибки бизнес-логики имеют следуюший вид:\n\n  ```json\n  {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n  ```\n\nВ поле `code` содержится тип ошибки, а в `message` - дополнительная информация по произошедшей ошибке.\nНа данный момент существуют следующие коды ошибок:\n\n  | Код                              | Описание                                                                                                                              |\n  | ---                              | --------                                                                                                                              |\n  | **invalidDeadline**              | Неверный формат максимального времени обработки запроса.                                                                              |\n  | **ambiguousPartyID**             | Невозможно однозначно определить идентификатор участника, укажите идентификатор в запросе явно.                                       |\n  | **invalidRequest**               | Прочие неверные данные запроса.                                                                                                       |\n\n## Общие ошибки\nОшибки возникающие при попытках совершения операций с незарегистрированными в системе объектами. Имеют вид\n\n  ```json\n  {\n      \"message\": \"string\"\n  }\n  ```\n\nВ поле `message` содержится информация по произошедшей ошибке. Например:\n\n  ```json\n  {\n      \"message\": \"Invalid token\"\n  }\n  ```\n\n## Ошибки обработки запросов\nВ процессе обработки запросов силами нашей платформы могут происходить различные непредвиденные ситуации. Об их появлении платформа сигнализирует по протоколу HTTP соответствующими [статусами][5xx], обозначающими ошибки сервера.\n\n  |  Код    |  Описание  |\n  | ------- | ---------- |\n  | **500** | В процессе обработки платформой запроса возникла непредвиденная ситуация. При получении подобного кода ответа мы рекомендуем обратиться в техническую поддержку. |\n  | **503** | Платформа временно недоступна и не готова обслуживать данный запрос. Запрос гарантированно не выполнен, при получении подобного кода ответа попробуйте выполнить его позднее, когда доступность платформы будет восстановлена. |\n  | **504** | Платформа превысила допустимое время обработки запроса, результат запроса не определён. Попробуйте отправить запрос повторно или выяснить результат выполнения исходного запроса, если повторное исполнение запроса нежелательно. |\n\n[5xx]: https://tools.ietf.org/html/rfc7231#section-6.6\n\nЕсли вы получили ошибку, которой нет в данном описании, обратитесь в техническую поддержку.\n"
     },
     {
       "name": "Reports",
@@ -320,6 +311,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -368,6 +362,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -424,6 +421,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDs"
           },
           {
@@ -478,6 +478,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDs"
           },
           {
@@ -519,7 +522,7 @@
     },
     "/analytics/payments/count": {
       "get": {
-        "description": "Получение колличества платежей с группировкой по валютам",
+        "description": "Получение количества платежей с группировкой по валютам",
         "tags": [
           "Analytics"
         ],
@@ -530,6 +533,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -546,7 +552,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Средний колличества платежей с группировкой по валютам",
+            "description": "Среднее количество платежей с группировкой по валютам",
             "schema": {
               "type": "object",
               "properties": {
@@ -584,6 +590,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -640,6 +649,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDs"
           },
           {
@@ -684,7 +696,7 @@
     },
     "/analytics/payments/split-count": {
       "get": {
-        "description": "Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам",
+        "description": "Получение количества платежей с группировкой по валютам и статусам, разделенного по временным интервалам",
         "tags": [
           "Analytics"
         ],
@@ -695,6 +707,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -714,7 +729,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам",
+            "description": "Количество платежей с группировкой по валютам и статусам, разделенное по временным интервалам",
             "schema": {
               "type": "object",
               "properties": {
@@ -752,6 +767,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDs"
@@ -808,6 +826,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDs"
           },
           {
@@ -860,6 +881,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDQuery"
@@ -1010,6 +1034,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDQuery"
           },
           {
@@ -1135,6 +1162,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDQuery"
@@ -1412,6 +1442,9 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
             "$ref": "#/parameters/shopIDQuery"
           },
           {
@@ -1514,6 +1547,9 @@
           },
           {
             "$ref": "#/parameters/deadline"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           },
           {
             "$ref": "#/parameters/shopIDQuery"
@@ -1647,6 +1683,12 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
+            "$ref": "#/parameters/shopIDQuery"
+          },
+          {
             "$ref": "#/parameters/fromTime"
           },
           {
@@ -1661,9 +1703,6 @@
             "enum": [
               "paymentRegistry"
             ]
-          },
-          {
-            "$ref": "#/parameters/shopID"
           }
         ],
         "responses": {
@@ -1686,6 +1725,7 @@
                   "description": "[Код ошибки](#tag/Error-Codes)\n",
                   "type": "string",
                   "enum": [
+                    "ambiguousPartyID",
                     "invalidShopID",
                     "invalidRequest",
                     "invalidDeadline"
@@ -1718,6 +1758,15 @@
             "$ref": "#/parameters/deadline"
           },
           {
+            "$ref": "#/parameters/partyIDQuery"
+          },
+          {
+            "$ref": "#/parameters/shopIDQuery"
+          },
+          {
+            "$ref": "#/parameters/shopIDs"
+          },
+          {
             "$ref": "#/parameters/fromTime"
           },
           {
@@ -1737,12 +1786,6 @@
                 "paymentRegistryByPayout"
               ]
             }
-          },
-          {
-            "$ref": "#/parameters/shopID"
-          },
-          {
-            "$ref": "#/parameters/shopIDs"
           },
           {
             "name": "continuationToken",
@@ -1784,6 +1827,7 @@
                   "description": "[Код ошибки](#tag/Error-Codes)\n",
                   "type": "string",
                   "enum": [
+                    "ambiguousPartyID",
                     "limitExceeded",
                     "invalidRequest",
                     "invalidDeadline"
@@ -2354,6 +2398,7 @@
           "type": "string",
           "enum": [
             "invalidRequest",
+            "ambiguousPartyID",
             "invalidDeadline"
           ]
         },

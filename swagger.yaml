@@ -101,6 +101,14 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  partyIDQuery:
+    name: partyID
+    in: query
+    description: Уникальный идентификатор участника в рамках платформы
+    required: false
+    type: string
+    maxLength: 40
+    minLength: 1
   paymentID:
     name: paymentID
     in: path
@@ -215,14 +223,6 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  shopID:
-    name: shopID
-    in: query
-    description: Идентификатор магазина
-    required: false
-    type: string
-    maxLength: 40
-    minLength: 1
   shopIDs:
     name: shopIDs
     in: query
@@ -239,14 +239,6 @@ parameters:
     type: array
     items:
       type: string
-  partyID:
-    name: partyID
-    in: path
-    description: Идентификатор пати
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
   reportType:
     name: reportType
     in: query
@@ -295,7 +287,8 @@ tags:
 
         | Код                              | Описание                                                                                                                              |
         | ---                              | --------                                                                                                                              |
-        | **invalidDeadline**              | Неверный формат времени.                                                                                                       |
+        | **invalidDeadline**              | Неверный формат максимального времени обработки запроса.                                                                              |
+        | **ambiguousPartyID**             | Невозможно однозначно определить идентификатор участника, укажите идентификатор в запросе явно.                                       |
         | **invalidRequest**               | Прочие неверные данные запроса.                                                                                                       |
 
       ## Общие ошибки
@@ -345,6 +338,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
       responses:
@@ -372,6 +366,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -401,6 +396,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -430,6 +426,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -452,20 +449,21 @@ paths:
           $ref: '#/responses/NotFound'
   /analytics/payments/count:
     get:
-      description: Получение колличества платежей с группировкой по валютам
+      description: Получение количества платежей с группировкой по валютам
       tags:
         - Analytics
       operationId: getPaymentsCount
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
         '200':
-          description: Средний колличества платежей с группировкой по валютам
+          description: Среднее количество платежей с группировкой по валютам
           schema:
             type: object
             properties:
@@ -488,6 +486,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -517,6 +516,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -540,13 +540,14 @@ paths:
           $ref: '#/responses/NotFound'
   /analytics/payments/split-count:
     get:
-      description: 'Получение колличества платежей с группировкой по валютам и статусам, разделенные по временным интервалам'
+      description: 'Получение количества платежей с группировкой по валютам и статусам, разделенного по временным интервалам'
       tags:
         - Analytics
       operationId: getPaymentsSplitCount
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -554,7 +555,7 @@ paths:
         - $ref: '#/parameters/splitUnit'
       responses:
         '200':
-          description: 'Колличество платежей с группировкой по валютам и статусам, разделенные по временным интервалам'
+          description: 'Количество платежей с группировкой по валютам и статусам, разделенное по временным интервалам'
           schema:
             type: object
             properties:
@@ -577,6 +578,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -606,6 +608,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
         - $ref: '#/parameters/fromTime'
@@ -635,6 +638,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
@@ -738,6 +742,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
@@ -827,6 +832,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
@@ -1031,6 +1037,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
@@ -1100,6 +1107,7 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
@@ -1190,6 +1198,8 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
+        - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - name: reportType
@@ -1199,7 +1209,6 @@ paths:
           type: string
           enum:
             - paymentRegistry
-        - $ref: '#/parameters/shopID'
       responses:
         '201':
           description: Отчет создан
@@ -1218,6 +1227,7 @@ paths:
                   [Код ошибки](#tag/Error-Codes)
                 type: string
                 enum:
+                  - ambiguousPartyID
                   - invalidShopID
                   - invalidRequest
                   - invalidDeadline
@@ -1235,6 +1245,9 @@ paths:
       parameters:
         - $ref: '#/parameters/requestID'
         - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/partyIDQuery'
+        - $ref: '#/parameters/shopIDQuery'
+        - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - name: reportTypes
@@ -1248,8 +1261,6 @@ paths:
               - provisionOfService
               - paymentRegistry
               - paymentRegistryByPayout
-        - $ref: '#/parameters/shopID'
-        - $ref: '#/parameters/shopIDs'
         - name: continuationToken
           in: query
           required: false
@@ -1287,6 +1298,7 @@ paths:
                   [Код ошибки](#tag/Error-Codes)
                 type: string
                 enum:
+                  - ambiguousPartyID
                   - limitExceeded
                   - invalidRequest
                   - invalidDeadline
@@ -1702,6 +1714,7 @@ definitions:
         type: string
         enum:
           - invalidRequest
+          - ambiguousPartyID
           - invalidDeadline
       message:
         description: Человекочитаемое описание ошибки
