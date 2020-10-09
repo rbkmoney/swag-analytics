@@ -311,7 +311,7 @@ parameters:
     required: false
     type: string
     enum:
-      - prod
+      - live
       - test
 tags:
   - name: Search
