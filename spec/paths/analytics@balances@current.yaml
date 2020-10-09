@@ -9,7 +9,7 @@ get:
     - $ref: '#/parameters/partyIDQuery'
     - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/excludeShopIDs'
-    - $ref: '#/parameters/shopEnvironment'
+    - $ref: '#/parameters/shopRealm'
   responses:
     '200':
       description: Список оборотов с группировкой по валютам
