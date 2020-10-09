@@ -263,6 +263,15 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
+  paymentInstitutionRealm:
+    name: paymentInstitutionRealm
+    in: query
+    description: 'Тип магазина, тестовый или «боевой»'
+    required: false
+    type: string
+    enum:
+      - live
+      - test
 tags:
   - name: Search
     x-displayName: Поиск
@@ -341,6 +350,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
       responses:
         '200':
           description: Список оборотов с группировкой по валютам
@@ -369,6 +379,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -399,6 +410,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -429,6 +441,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -459,6 +472,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -489,6 +503,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -519,6 +534,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -550,6 +566,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/splitUnit'
@@ -581,6 +598,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -611,6 +629,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDs'
         - $ref: '#/parameters/excludeShopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
       responses:
@@ -641,6 +660,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -745,6 +765,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -835,6 +856,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -1040,6 +1062,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -1110,6 +1133,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - $ref: '#/parameters/limit'
@@ -1248,6 +1272,7 @@ paths:
         - $ref: '#/parameters/partyIDQuery'
         - $ref: '#/parameters/shopIDQuery'
         - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
         - name: reportTypes
