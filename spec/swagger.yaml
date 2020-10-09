@@ -304,8 +304,8 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  shopRealm:
-    name: shopRealm
+  paymentInstitutionRealm:
+    name: paymentInstitutionRealm
     in: query
     description: Тип магазина
     required: false
