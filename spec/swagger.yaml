@@ -148,14 +148,6 @@ parameters:
     type: string
     maxLength: 40
     minLength: 1
-  partyIDPath:
-    name: partyID
-    in: path
-    description: Уникальный идентификатор участника в рамках платформы
-    required: true
-    type: string
-    maxLength: 40
-    minLength: 1
   paymentID:
     name: paymentID
     in: path
