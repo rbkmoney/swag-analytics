@@ -307,7 +307,7 @@ parameters:
   paymentInstitutionRealm:
     name: paymentInstitutionRealm
     in: query
-    description: Тип магазина
+    description: Тип магазина, тестовый или «боевой»
     required: false
     type: string
     enum:
