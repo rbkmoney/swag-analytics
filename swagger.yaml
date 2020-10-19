@@ -300,6 +300,7 @@ tags:
         | ---                              | --------                                                                                                                              |
         | **invalidDeadline**              | Неверный формат максимального времени обработки запроса.                                                                              |
         | **ambiguousPartyID**             | Невозможно однозначно определить идентификатор участника, укажите идентификатор в запросе явно.                                       |
+        | **invalidPartyID**               | Участник с указанным идентификатором не существует или недоступен.                                                                    |
         | **invalidRequest**               | Прочие неверные данные запроса.                                                                                                       |
 
       ## Общие ошибки
@@ -1355,6 +1356,7 @@ paths:
                   - ambiguousPartyID
                   - limitExceeded
                   - invalidRequest
+                  - invalidPartyID
                   - invalidDeadline
               message:
                 description: Человекочитаемое описание ошибки
@@ -1770,6 +1772,7 @@ definitions:
           - invalidRequest
           - ambiguousPartyID
           - invalidDeadline
+          - invalidPartyID
       message:
         description: Человекочитаемое описание ошибки
         type: string
