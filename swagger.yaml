@@ -340,6 +340,33 @@ tags:
     description: |
       Аналитические методы по статистике платежей
 paths:
+  /analytics/balances/current-shop-balances:
+    get:
+      description: Получение текущего баланса с группировкой по магазинам
+      tags:
+        - Analytics
+      operationId: getCurrentBalancesGroupByShop
+      parameters:
+        - $ref: '#/parameters/requestID'
+        - $ref: '#/parameters/deadline'
+        - $ref: '#/parameters/shopIDs'
+        - $ref: '#/parameters/excludeShopIDs'
+      responses:
+        '200':
+          description: Список балансов с группировкой по магазинам
+          schema:
+            type: object
+            properties:
+              result:
+                type: array
+                items:
+                  $ref: '#/definitions/GroupByShopAmountResult'
+        '400':
+          $ref: '#/responses/DefaultLogicError'
+        '401':
+          $ref: '#/responses/Unauthorized'
+        '404':
+          $ref: '#/responses/NotFound'
   /analytics/balances/current:
     get:
       description: Получение текущего баланса по магазину
@@ -1829,6 +1856,15 @@ definitions:
       countryGeoID:
         type: integer
         format: int32
+  GroupByShopAmountResult:
+    description: |
+      Сгруппированый по магазинам список текущих балансов
+    type: object
+    properties:
+      groupBySHopResults:
+        type: array
+        items:
+          $ref: '#/definitions/ShopAmountResult'
   InternationalBankAccount:
     description: Данные международного банковского счёта
     type: object
@@ -2771,6 +2807,20 @@ definitions:
       settlementID:
         type: integer
         format: int64
+  ShopAmountResult:
+    description: |
+      баланс по магазину
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        description: Идентификатор магазина
+        type: string
+      amountResults:
+        type: array
+        items:
+          $ref: '#/definitions/AmountResult'
   ShopDetails:
     type: object
     required:
