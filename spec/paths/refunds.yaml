@@ -14,6 +14,11 @@ get:
     - $ref: '#/parameters/toTime'
     - $ref: '#/parameters/limit'
     - $ref: '#/parameters/offset'
+    - name: invoiceIDs
+      in: query
+      description: Список инвойсов
+      required: false
+      type: string
     - name: invoiceID
       in: query
       description: Идентификатор инвойса
