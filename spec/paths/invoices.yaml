@@ -17,7 +17,9 @@ get:
       in: query
       description: Список инвойсов
       required: false
-      type: string
+      type: array
+        items:
+          type: string
     - name: invoiceStatus
       in: query
       description: Статус инвойса для поиска
