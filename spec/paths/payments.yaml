@@ -18,8 +18,8 @@ get:
       description: Список инвойсов
       required: false
       type: array
-        items:
-          type: string
+      items:
+        type: string
     - name: paymentStatus
       in: query
       description: Статус платежа для поиска
