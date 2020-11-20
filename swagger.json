@@ -1147,6 +1147,16 @@
             "$ref": "#/parameters/limit"
           },
           {
+            "name": "invoiceIDs",
+            "in": "query",
+            "description": "Список инвойсов",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          {
             "name": "invoiceStatus",
             "in": "query",
             "description": "Статус инвойса для поиска",
@@ -1278,6 +1288,16 @@
           },
           {
             "$ref": "#/parameters/limit"
+          },
+          {
+            "name": "invoiceIDs",
+            "in": "query",
+            "description": "Список инвойсов",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           {
             "name": "paymentStatus",
@@ -1672,6 +1692,16 @@
           },
           {
             "$ref": "#/parameters/offset"
+          },
+          {
+            "name": "invoiceIDs",
+            "in": "query",
+            "description": "Список инвойсов",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           {
             "name": "invoiceID",
