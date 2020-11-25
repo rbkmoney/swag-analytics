@@ -1347,7 +1347,8 @@
               "wechat",
               "alipay",
               "zotapay",
-              "qps"
+              "qps",
+              "uzcard"
             ]
           },
           {
@@ -3359,7 +3360,8 @@
             "wechat",
             "alipay",
             "zotapay",
-            "qps"
+            "qps",
+            "uzcard"
           ]
         }
       }
@@ -3372,7 +3374,8 @@
         "wechat",
         "alipay",
         "zotapay",
-        "qps"
+        "qps",
+        "uzcard"
       ]
     },
     "PaymentToolDetails": {

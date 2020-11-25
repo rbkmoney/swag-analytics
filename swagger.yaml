@@ -943,6 +943,7 @@ paths:
             - alipay
             - zotapay
             - qps
+            - uzcard
         - name: invoiceID
           in: query
           description: Идентификатор инвойса
@@ -2407,6 +2408,7 @@ definitions:
           - alipay
           - zotapay
           - qps
+          - uzcard
   PaymentTerminalProvider:
     description: Провайдер терминальной сети
     type: string
@@ -2416,6 +2418,7 @@ definitions:
       - alipay
       - zotapay
       - qps
+      - uzcard
   PaymentToolDetails:
     type: object
     discriminator: detailsType
