@@ -5,11 +5,13 @@ enum:
   - mastercard
   - visaelectron
   - maestro
-  - forbrugsforeningen
-  - dankort
   - amex
   - dinersclub
   - discover
   - unionpay
   - jcb
   - nspkmir
+  - elo
+  - rupay
+  - dummy
+  - uzcard
