@@ -1477,7 +1477,11 @@
               "discover",
               "unionpay",
               "jcb",
-              "nspkmir"
+              "nspkmir",
+              "elo",
+              "rupay",
+              "dummy",
+              "uzcard"
             ]
           },
           {
@@ -2192,7 +2196,11 @@
             "discover",
             "unionpay",
             "jcb",
-            "nspkmir"
+            "nspkmir",
+            "elo",
+            "rupay",
+            "dummy",
+            "uzcard"
           ]
         },
         "tokenProvider": {
@@ -2222,7 +2230,11 @@
         "discover",
         "unionpay",
         "jcb",
-        "nspkmir"
+        "nspkmir",
+        "elo",
+        "rupay",
+        "dummy",
+        "uzcard"
       ]
     },
     "BankCardTokenProvider": {

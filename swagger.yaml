@@ -1045,6 +1045,10 @@ paths:
             - unionpay
             - jcb
             - nspkmir
+            - elo
+            - rupay
+            - dummy
+            - uzcard
         - name: paymentAmountFrom
           in: query
           description: Минимальная сумма платежа
@@ -1529,6 +1533,10 @@ definitions:
           - unionpay
           - jcb
           - nspkmir
+          - elo
+          - rupay
+          - dummy
+          - uzcard
       tokenProvider:
         description: Провайдер платежных токенов
         type: string
@@ -1553,6 +1561,10 @@ definitions:
       - unionpay
       - jcb
       - nspkmir
+      - elo
+      - rupay
+      - dummy
+      - uzcard
   BankCardTokenProvider:
     description: Провайдер платежных токенов
     type: string
