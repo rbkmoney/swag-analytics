@@ -1916,6 +1916,9 @@
             "$ref": "#/parameters/toTime"
           },
           {
+            "$ref": "#/parameters/limit"
+          },
+          {
             "name": "reportTypes",
             "description": "Типы отчетов",
             "in": "query",
