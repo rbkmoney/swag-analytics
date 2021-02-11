@@ -1332,7 +1332,14 @@ paths:
         - $ref: '#/parameters/paymentInstitutionRealm'
         - $ref: '#/parameters/fromTime'
         - $ref: '#/parameters/toTime'
-        - $ref: '#/parameters/limit'
+        - name: limit
+          description: Лимит выборки
+          in: query
+          required: false
+          type: integer
+          format: int32
+          minimum: 1
+          maximum: 1000
         - name: reportTypes
           description: Типы отчетов
           in: query
