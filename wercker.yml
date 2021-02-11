@@ -5,7 +5,7 @@ box:
 
 build:
   steps:
-    - npm-install
+    - mvandervliet/npm-ci
     - npm-test
     - script:
       name: build docsite
@@ -13,7 +13,7 @@ build:
 
 dev:
   steps:
-    - npm-install
+    - mvandervliet/npm-ci
     - npm-test
     - internal/shell
 
