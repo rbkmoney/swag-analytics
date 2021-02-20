@@ -1348,7 +1348,8 @@
               "alipay",
               "zotapay",
               "qps",
-              "uzcard"
+              "uzcard",
+              "rbs"
             ]
           },
           {
@@ -3386,7 +3387,8 @@
             "alipay",
             "zotapay",
             "qps",
-            "uzcard"
+            "uzcard",
+            "rbs"
           ]
         }
       }
@@ -3400,7 +3402,8 @@
         "alipay",
         "zotapay",
         "qps",
-        "uzcard"
+        "uzcard",
+        "rbs"
       ]
     },
     "PaymentToolDetails": {

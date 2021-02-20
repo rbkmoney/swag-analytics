@@ -944,6 +944,7 @@ paths:
             - zotapay
             - qps
             - uzcard
+            - rbs
         - name: invoiceID
           in: query
           description: Идентификатор инвойса
@@ -2432,6 +2433,7 @@ definitions:
           - zotapay
           - qps
           - uzcard
+          - rbs
   PaymentTerminalProvider:
     description: Провайдер терминальной сети
     type: string
@@ -2442,6 +2444,7 @@ definitions:
       - zotapay
       - qps
       - uzcard
+      - rbs
   PaymentToolDetails:
     type: object
     discriminator: detailsType
