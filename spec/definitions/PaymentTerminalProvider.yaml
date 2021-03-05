@@ -6,3 +6,5 @@ enum:
   - alipay
   - zotapay
   - qps
+  - uzcard
+  - rbs

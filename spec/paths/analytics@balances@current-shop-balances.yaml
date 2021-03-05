@@ -1,27 +1,23 @@
 get:
-  description: Получение списка оборотов с группировкой по валютам
+  description: Получение текущего баланса с группировкой по магазинам
   tags:
     - Analytics
-  operationId: getPaymentsAmount
+  operationId: getCurrentBalancesGroupByShop
   parameters:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
-    - $ref: '#/parameters/partyIDQuery'
     - $ref: '#/parameters/shopIDs'
     - $ref: '#/parameters/excludeShopIDs'
-    - $ref: '#/parameters/paymentInstitutionRealm'
-    - $ref: '#/parameters/fromTime'
-    - $ref: '#/parameters/toTime'
   responses:
     '200':
-      description: Список оборотов с группировкой по валютам
+      description: Список балансов с группировкой по магазинам
       schema:
         type: object
         properties:
           result:
             type: array
             items:
-              $ref: '#/definitions/AmountResult'
+              $ref: '#/definitions/GroupByShopAmountResult'
     '404':
       $ref: '#/responses/NotFound'
     '401':
