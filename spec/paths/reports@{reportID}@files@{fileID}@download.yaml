@@ -8,6 +8,7 @@ get:
     - $ref: '#/parameters/deadline'
     - $ref: '#/parameters/reportID'
     - $ref: '#/parameters/fileID'
+    - $ref: '#/parameters/partyIDQuery'
   responses:
     '200':
       description: Download link
