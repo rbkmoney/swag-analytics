@@ -7,7 +7,6 @@ post:
     - $ref: '#/parameters/requestID'
     - $ref: '#/parameters/deadline'
     - $ref: '#/parameters/reportID'
-    - $ref: '#/parameters/partyIDQuery'
   responses:
     '202':
       description: Запрос на отмену отчета принят
