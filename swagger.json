@@ -2128,8 +2128,7 @@
             "amount": {
               "description": "Стоимость предлагаемых товаров или услуг, в минорных денежных\nединицах, например в копейках в случае указания российских рублей в\nкачестве валюты.\n",
               "type": "integer",
-              "format": "int64",
-              "minimum": 1
+              "format": "int64"
             },
             "currency": {
               "description": "Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).",
