@@ -2506,10 +2506,15 @@
       ],
       "properties": {
         "cryptoCurrency": {
-          "x-rebillyMerge": [
-            {
-              "$ref": "#/definitions/CryptoCurrency"
-            }
+          "description": "Тип криптовалюты",
+          "type": "string",
+          "enum": [
+            "bitcoin",
+            "litecoin",
+            "bitcoinCash",
+            "ripple",
+            "ethereum",
+            "zcash"
           ]
         }
       }

@@ -1777,8 +1777,15 @@ definitions:
       - cryptoCurrency
     properties:
       cryptoCurrency:
-        x-rebillyMerge:
-          - $ref: '#/definitions/CryptoCurrency'
+        description: Тип криптовалюты
+        type: string
+        enum:
+          - bitcoin
+          - litecoin
+          - bitcoinCash
+          - ripple
+          - ethereum
+          - zcash
   Currency:
     description: 'Валюта, символьный код согласно [ISO 4217](http://www.iso.org/iso/home/standards/currency_codes.htm).'
     type: string
