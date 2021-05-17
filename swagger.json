@@ -328,6 +328,9 @@
           },
           {
             "$ref": "#/parameters/excludeShopIDs"
+          },
+          {
+            "$ref": "#/parameters/partyIDQuery"
           }
         ],
         "responses": {
