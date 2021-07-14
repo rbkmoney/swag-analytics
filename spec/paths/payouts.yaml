@@ -27,10 +27,10 @@ get:
       required: false
       type: string
       enum:
-        - RussianBankAccount
-        - InternationalBankAccount
-        - Wallet
-        - PaymentInstitutionAccount
+        - PayoutToolRussianBankAccount
+        - PayoutToolInternationalBankAccount
+        - PayoutToolWalletInfo
+        - PayoutToolPaymentInstitutionAccount
     - name: excludedShops
       in: query
       description: Идентификаторы магазинов, исключаемых из поиска
