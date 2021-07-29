@@ -1138,7 +1138,7 @@ paths:
             Тип выплаты для поиска
               * PayoutAccount - выплата на банковский счёт
               * Wallet - выплата на кошелёк
-              * PaymentInstitutionAccount - выплата счет платежной организации
+              * PaymentInstitutionAccount - выплата на счёт платежной организации
         - name: excludedShops
           in: query
           description: 'Идентификаторы магазинов, исключаемых из поиска'
