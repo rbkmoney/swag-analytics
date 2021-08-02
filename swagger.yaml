@@ -1816,24 +1816,6 @@ definitions:
             maxLength: 1000
           paymentToolDetails:
             $ref: '#/definitions/PaymentToolDetails'
-  Decimal:
-    description: Дробное десятичное число произвольной точности
-    type: object
-    required:
-      - m
-      - exp
-    properties:
-      m:
-        description: |
-          Мантисса.
-        type: integer
-        format: int64
-        minimum: 0
-      exp:
-        description: |
-          Порядок.
-        type: integer
-        format: int64
   DefaultLogicError:
     type: object
     required:

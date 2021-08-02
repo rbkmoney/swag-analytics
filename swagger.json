@@ -2559,27 +2559,6 @@
         }
       ]
     },
-    "Decimal": {
-      "description": "Дробное десятичное число произвольной точности",
-      "type": "object",
-      "required": [
-        "m",
-        "exp"
-      ],
-      "properties": {
-        "m": {
-          "description": "Мантисса.\n",
-          "type": "integer",
-          "format": "int64",
-          "minimum": 0
-        },
-        "exp": {
-          "description": "Порядок.\n",
-          "type": "integer",
-          "format": "int64"
-        }
-      }
-    },
     "DefaultLogicError": {
       "type": "object",
       "required": [
