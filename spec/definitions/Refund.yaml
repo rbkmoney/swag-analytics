@@ -35,4 +35,10 @@ allOf:
       shopID:
         description: Идентификатор магазина
         type: string
+      allocation:
+        x-merge-obj:
+          - $ref: '#/definitions/Allocation'
+          - description: >
+              Итоговое распределение денежных средств, которое должно формироваться
+              из распределения инвойса исключением позиций, по которым производится возврат.
   - $ref: '#/definitions/RefundStatus'

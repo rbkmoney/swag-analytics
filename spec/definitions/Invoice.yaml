@@ -51,6 +51,8 @@ allOf:
         type: string
       cart:
         $ref: '#/definitions/InvoiceCart'
+      allocation:
+        $ref: '#/definitions/Allocation'
       metadata:
         description: Связанные с инвойсом метаданные
         type: object
