@@ -2119,6 +2119,224 @@
     }
   },
   "definitions": {
+    "Allocation": {
+      "description": "Распределение денежных средств\n",
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/definitions/AllocationTransaction"
+      }
+    },
+    "AllocationBodyAmount": {
+      "description": "Тело транзакции в абсолютных значениях",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AllocationTransaction"
+        },
+        {
+          "type": "object",
+          "required": [
+            "amount",
+            "currency"
+          ],
+          "properties": {
+            "amount": {
+              "description": "Сумма перечисляемая выбранному назначению в минорных денежных единицах, например в копейках в случае указания российских рублей в качестве валюты.\n",
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "currency": {
+              "x-rebillyMerge": [
+                {
+                  "$ref": "#/definitions/Currency"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "AllocationBodyTotal": {
+      "description": "Тело транзакции с указанием комиссии",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AllocationTransaction"
+        },
+        {
+          "type": "object",
+          "required": [
+            "total",
+            "currency",
+            "fee"
+          ],
+          "properties": {
+            "total": {
+              "description": "Общая сумма транзакции (включает в себя комиссию) в минорных денежных единицах, например в копейках в случае указания российских рублей в качестве валюты.\n",
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            },
+            "amount": {
+              "description": "Сумма перечисляемая выбранному назначению в минорных денежных единицах, например в копейках в случае указания российских рублей в качестве валюты.\n",
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "readOnly": true
+            },
+            "currency": {
+              "x-rebillyMerge": [
+                {
+                  "$ref": "#/definitions/Currency"
+                }
+              ]
+            },
+            "fee": {
+              "$ref": "#/definitions/AllocationFee"
+            }
+          }
+        }
+      ]
+    },
+    "AllocationFee": {
+      "description": "Комиссия транзакции",
+      "type": "object",
+      "discriminator": "allocationFeeType",
+      "required": [
+        "allocationFeeType"
+      ],
+      "properties": {
+        "target": {
+          "x-rebillyMerge": [
+            {
+              "$ref": "#/definitions/AllocationTarget"
+            },
+            {
+              "readOnly": true
+            }
+          ]
+        },
+        "allocationFeeType": {
+          "type": "string",
+          "enum": [
+            "AllocationFeeFixed",
+            "AllocationFeeShare"
+          ]
+        }
+      }
+    },
+    "AllocationFeeFixed": {
+      "description": "Комиссия транзакции в абсолютных значениях",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AllocationFee"
+        },
+        {
+          "type": "object",
+          "required": [
+            "amount"
+          ],
+          "properties": {
+            "amount": {
+              "description": "Значение комиссии в минорных денежных единицах, например в копейках в случае указания российских рублей в качестве валюты транзакции.\n",
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            }
+          }
+        }
+      ]
+    },
+    "AllocationFeeShare": {
+      "description": "Комиссия транзакции в относительных значениях",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AllocationFee"
+        },
+        {
+          "type": "object",
+          "required": [
+            "share"
+          ],
+          "properties": {
+            "share": {
+              "$ref": "#/definitions/Decimal"
+            },
+            "amount": {
+              "description": "Значение комиссии в минорных денежных единицах, например в копейках в случае указания российских рублей в качестве валюты транзакции.\n",
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "readOnly": true
+            }
+          }
+        }
+      ]
+    },
+    "AllocationTarget": {
+      "description": "Назначение транзакции",
+      "type": "object",
+      "discriminator": "allocationTargetType",
+      "required": [
+        "allocationTargetType"
+      ],
+      "properties": {
+        "allocationTargetType": {
+          "type": "string",
+          "enum": [
+            "AllocationTargetShop"
+          ]
+        }
+      }
+    },
+    "AllocationTargetShop": {
+      "description": "Магазин как назначение транзакции",
+      "allOf": [
+        {
+          "$ref": "#/definitions/AllocationTarget"
+        },
+        {
+          "type": "object",
+          "required": [
+            "shopID"
+          ],
+          "properties": {
+            "shopID": {
+              "description": "Идентификатор магазина",
+              "type": "string",
+              "maxLength": 40,
+              "minLength": 1
+            }
+          }
+        }
+      ]
+    },
+    "AllocationTransaction": {
+      "description": "Транзакция распределения денежных средств",
+      "type": "object",
+      "discriminator": "allocationBodyType",
+      "required": [
+        "target",
+        "allocationBodyType"
+      ],
+      "properties": {
+        "target": {
+          "$ref": "#/definitions/AllocationTarget"
+        },
+        "allocationBodyType": {
+          "description": "Тело транзакции",
+          "type": "string",
+          "enum": [
+            "AllocationBodyAmount",
+            "AllocationBodyTotal"
+          ]
+        },
+        "cart": {
+          "$ref": "#/definitions/InvoiceCart"
+        }
+      }
+    },
     "AmountResult": {
       "type": "object",
       "allOf": [
@@ -2559,6 +2777,27 @@
         }
       ]
     },
+    "Decimal": {
+      "description": "Дробное десятичное число произвольной точности",
+      "type": "object",
+      "required": [
+        "m",
+        "exp"
+      ],
+      "properties": {
+        "m": {
+          "description": "Мантисса.\n",
+          "type": "integer",
+          "format": "int64",
+          "minimum": 0
+        },
+        "exp": {
+          "description": "Порядок.\n",
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
     "DefaultLogicError": {
       "type": "object",
       "required": [
@@ -2842,6 +3081,9 @@
             },
             "cart": {
               "$ref": "#/definitions/InvoiceCart"
+            },
+            "allocation": {
+              "$ref": "#/definitions/Allocation"
             },
             "metadata": {
               "description": "Связанные с инвойсом метаданные",
@@ -3285,6 +3527,9 @@
             },
             "makeRecurrent": {
               "$ref": "#/definitions/PaymentMakeRecurrent"
+            },
+            "allocation": {
+              "$ref": "#/definitions/Allocation"
             }
           }
         }
@@ -3694,6 +3939,15 @@
             "shopID": {
               "description": "Идентификатор магазина",
               "type": "string"
+            },
+            "allocation": {
+              "description": "Итоговое распределение денежных средств, которое должно формироваться из распределения инвойса исключением позиций, по которым производится возврат.\n",
+              "type": "array",
+              "minItems": 1,
+              "maxItems": 100,
+              "items": {
+                "$ref": "#/definitions/AllocationTransaction"
+              }
             }
           }
         },
