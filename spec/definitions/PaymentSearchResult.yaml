@@ -64,3 +64,5 @@ allOf:
         $ref: '#/definitions/TransactionInfo'
       makeRecurrent:
         $ref: '#/definitions/PaymentMakeRecurrent'
+      allocation:
+        $ref: '#/definitions/Allocation'
